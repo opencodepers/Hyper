@@ -28,4 +28,7 @@ kinetic typography web animation
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=kinetic%20typography%20web%20animation
+- GitHub search: https://github.com/search?q=kinetic%20typography%20web%20animation&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/kinetic-typography.md

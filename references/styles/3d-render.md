@@ -27,4 +27,7 @@ Performance; accessibility
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=3D%20render%20illustration%20UI%20web
+- GitHub search: https://github.com/search?q=3D%20render%20illustration%20UI%20web&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/3d-render.md

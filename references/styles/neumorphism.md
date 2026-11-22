@@ -27,4 +27,7 @@ neumorphism CSS generator
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=neumorphism%20CSS%20generator
+- GitHub search: https://github.com/search?q=neumorphism%20CSS%20generator&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/neumorphism.md

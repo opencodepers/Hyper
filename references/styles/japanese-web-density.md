@@ -28,4 +28,7 @@ Japanese web design density
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=Japanese%20web%20design%20density
+- GitHub search: https://github.com/search?q=Japanese%20web%20design%20density&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/japanese-web-density.md

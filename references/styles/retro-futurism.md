@@ -27,4 +27,7 @@ retro futurism UI design
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=retro%20futurism%20UI%20design
+- GitHub search: https://github.com/search?q=retro%20futurism%20UI%20design&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/retro-futurism.md

@@ -28,4 +28,7 @@ Material Design guidelines components
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=Material%20Design%203%20components
+- GitHub search: https://github.com/search?q=Material%20Design%203%20components&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/material-design.md

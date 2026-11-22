@@ -28,4 +28,7 @@ brutalist web design examples
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=brutalist%20web%20design
+- GitHub search: https://github.com/search?q=brutalist%20web%20design&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/brutalist-web.md

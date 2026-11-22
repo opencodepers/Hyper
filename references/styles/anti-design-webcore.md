@@ -28,4 +28,7 @@ anti-design webcore UI
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=anti-design%20webcore%20UI
+- GitHub search: https://github.com/search?q=anti-design%20webcore%20UI&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/anti-design-webcore.md

@@ -28,4 +28,7 @@ dark first OLED UI design
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=dark%20first%20OLED%20UI%20design
+- GitHub search: https://github.com/search?q=dark%20first%20OLED%20UI%20design&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/dark-first-oled.md

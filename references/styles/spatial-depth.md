@@ -27,4 +27,7 @@ spatial depth UI design 3D
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=spatial%20depth%20UI%20design%203D
+- GitHub search: https://github.com/search?q=spatial%20depth%20UI%20design%203D&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/spatial-depth.md

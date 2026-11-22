@@ -29,4 +29,7 @@ terminal CLI UI design web
 
 ## References
 - Catalog: https://github.com/jacoblbagent/ui-design-styles
+- Live catalog: https://jacoblbagent.github.io/ui-design-styles/
+- Search: https://www.google.com/search?q=terminal%20CLI%20UI%20design%20web
+- GitHub search: https://github.com/search?q=terminal%20CLI%20UI%20design%20web&type=repositories
 - Detailed: https://github.com/opencodepers/hyper/blob/master/references/styles/terminal-cli.md
