@@ -1,0 +1,21 @@
+{
+  "name": "hyper",
+  "version": "1.0.0",
+  "description": "All-in-one lean skill group (hyperlean, hyperslop, hypershell) for any CLI AI agent harness. Installable via npx.",
+  "bin": {
+    "hyper": "bin/hyper.js"
+  },
+  "files": [
+    "bin",
+    "skills"
+  ],
+  "keywords": ["ai","agent","skills","hyperlean","ponytail","caveman","lean","tokens"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opencodepers/hyper.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

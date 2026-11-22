@@ -12,7 +12,23 @@ All-in-one lean skill group for any CLI AI agent harness.
 
 ## Install
 
-Copy each skill folder into your harness skills directory, e.g.:
+One command (via GitHub):
+
+```bash
+npx github:opencodepers/hyper
+```
+
+Or target a specific harness / project:
+
+```bash
+npx github:opencodepers/hyper --harness=claude
+npx github:opencodepers/hyper --project=/path/to/your/project
+npx github:opencodepers/hyper --list
+```
+
+(Once published to npm, `npx hyper` will also work.)
+
+Manual: copy each skill folder into your harness skills directory, e.g.:
 
 - OpenCode: `~/.opencode/skills/<name>/SKILL.md`
 - Claude Code: `~/.claude/skills/<name>/SKILL.md`
