@@ -56,6 +56,66 @@ Bento grid, Card-based UI, Data dashboard, Conversational UI, Gamified UI, Skele
 ## Practices (24) — disciplines
 Accessibility-first, Token-driven system UI, Progressive disclosure, Motion-led micro-interaction, Zero-UI/ambient, Agentic/adaptive UI, Responsive/mobile-first, Content design/UX writing, Research-driven design, Design system/atomic composition, Dark patterns (avoid), Localization/RTL, Performance-first, Error resilience/recovery, Elevation as hierarchy, Sound and haptic feedback, Spatial interaction, Cinematic/media-first, Scroll-driven narrative, Immersive/3D-first, Brand-expression-first, Conversion-optimised, Attention-first, Joy-first.
 
+## Resources & repos
+
+- UI design styles catalog (41 styles + 26 patterns + 24 practices): https://github.com/jacoblbagent/ui-design-styles (live: https://jacoblbagent.github.io/ui-design-styles/)
+- Design taste frontend (reference UI): https://github.com/Leonxlnx/taste-skill
+- Modern web guidance (performance/a11y/security): https://github.com/... (search "modern web guidance")
+- Impeccable (UI craft): https://github.com/pbakaus/impeccable
+- Neobrutalism: https://neobrutalism.com, https://neobrutalism.dev
+- Glassmorphism: https://glassmorphism.com
+- Neumorphism: https://neumorphism.io
+- Material 3: https://m3.material.io
+- Apple HIG: https://developer.apple.com/design/human-interface-guidelines
+- Fluent: https://fluent2.microsoft.design
+- Tailwind: https://tailwindcss.com
+- Lucide icons: https://lucide.dev
+- Motion (motion.dev): https://motion.dev
+
+## Search phrases (per style)
+
+- Skeuomorphism: "skeuomorphic UI CSS textures"
+- Flat design: "flat design UI examples"
+- Material Design: "Material Design 3 components"
+- Material 3: "Material You dynamic color"
+- Swiss: "Swiss international typographic style"
+- Minimalism: "minimalist UI design"
+- Editorial: "editorial web design magazine"
+- Brutalist web: "brutalist web design"
+- Fluent: "Fluent Design System"
+- Neumorphism: "neumorphism CSS generator"
+- Claymorphism: "claymorphism CSS"
+- Glassmorphism: "glassmorphism CSS generator"
+- Liquid glass: "liquid glass UI"
+- Aurora/mesh: "aurora mesh gradient CSS"
+- Neo-brutalism: "neobrutalism CSS generator thick borders"
+- 3D render: "3D render illustration UI"
+- Holographic: "holographic iridescent CSS"
+- Maximalism: "maximalist UI design"
+- Memphis: "Memphis design style"
+- Vaporwave: "vaporwave UI design"
+- Cyberpunk HUD: "cyberpunk HUD UI"
+- Y2K/Frutiger Aero: "Y2K Frutiger Aero UI"
+- Retro-futurism: "retro futurism UI"
+- Comic/pop art: "comic pop art UI"
+- Organic/hand-drawn: "hand-drawn organic UI"
+- Kinetic typography: "kinetic typography web"
+- Luxury/premium: "luxury premium UI design"
+- Playful chunky: "playful chunky UI"
+- Nordic: "Nordic Scandinavian UI"
+- Isometric: "isometric UI illustrations"
+- Terminal/CLI: "terminal CLI UI web"
+- Spatial/depth: "spatial depth UI 3D"
+- Dark-first/OLED: "dark first OLED UI"
+- Enterprise/B2B: "enterprise B2B UI dense"
+- iOS HIG: "iOS Human Interface Guidelines"
+- Art Deco: "art deco UI design"
+- Grunge/distressed: "grunge distressed UI"
+- Corporate Memphis: "corporate Memphis illustration"
+- Pixel art/8-bit: "pixel art 8-bit UI"
+- Japanese web density: "Japanese web design density"
+- Anti-design/webcore: "anti-design webcore UI"
+
 ## Usage rules
 - Pick one style for a surface; don't mix signatures.
 - Combine one style + one pattern + one practice (see catalog Combos).
