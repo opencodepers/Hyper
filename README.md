@@ -2,6 +2,8 @@
 
 All-in-one lean skill group for any CLI AI agent harness.
 
+**Live benchmark site:** https://opencodepers.github.io/hyper/
+
 ## Skills
 
 - **hyperlean** — 100x lean mode: caveman terse output + ponytail smallest-complete-change + yagni + complexity routing (S/M/L/XL) + scope contract + context/tool discipline + verification + better outputs + anti-slop + failure playbooks + security/data floor + verification matrix + debug/refactor/review protocols + think-smarter + shell discipline.
