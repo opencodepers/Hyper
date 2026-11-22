@@ -8,15 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff;
-}
+:root{--bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-body{line-height:1.55}
+body{line-height:1.55;overflow-x:hidden}
 a{color:inherit}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
-nav{border-bottom:1px solid var(--border);background:var(--bg)}
+nav{border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1080px;margin:0 auto}
 .logo{font-weight:600;font-size:17px;letter-spacing:-.2px}
 .nav-links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
@@ -29,9 +27,9 @@ h1{font-family:Fraunces,Georgia,serif;font-size:clamp(48px,8vw,88px);font-weight
 h1 em{font-style:italic;color:var(--accent)}
 .hero-sub{font-size:19px;color:var(--muted);max-width:620px;margin-bottom:32px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{padding:13px 22px;border-radius:6px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;display:inline-block}
+.btn{padding:13px 22px;border-radius:6px;font-weight:600;font-size:15px;border:1px solid transparent;cursor:pointer;display:inline-block;transition:transform .2s,background .2s}
 .btn-primary{background:var(--fg);color:var(--bg)}
-.btn-primary:hover{background:var(--accent)}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px)}
 .btn-ghost{background:transparent;color:var(--fg);border-color:var(--border)}
 .btn-ghost:hover{border-color:var(--fg)}
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;padding-top:32px;border-top:1px solid var(--border)}
@@ -50,28 +48,30 @@ h2{font-family:Fraunces,serif;font-size:clamp(32px,5vw,48px);font-weight:800;let
 .metric{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
 .metric:last-child{border-bottom:0}
 .metric .k{color:var(--muted)}
-.metric .v{font-weight:600;font-family:JetBrains Mono,monospace;font-size:13px}
+.metric .v{font-weight:600;font-family:'JetBrains Mono',monospace;font-size:13px}
 .bar{height:6px;background:#eee;border-radius:3px;overflow:hidden;margin:8px 0 16px}
-.bar-fill{height:100%;border-radius:3px}
+.bar-fill{height:100%;border-radius:3px;width:0}
 .bar-bad{background:#c0392b}
 .bar-good{background:#0f5132}
-.codeblock{background:#1a1a1a;color:#e8e8e8;border-radius:8px;padding:18px;font-family:JetBrains Mono,monospace;font-size:12.5px;overflow-x:auto;line-height:1.6;margin-top:12px}
+.codeblock{background:#1a1a1a;color:#e8e8e8;border-radius:8px;padding:18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;overflow-x:auto;line-height:1.6;margin-top:12px}
 .codeblock .c{color:#6a737d}
 .codeblock .k{color:#f97583}
 .codeblock .s{color:#9ecbff}
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.skill{border:1px solid var(--border);border-radius:8px;padding:24px;background:var(--card)}
+.skill{border:1px solid var(--border);border-radius:8px;padding:24px;background:var(--card);transition:transform .25s,border-color .25s}
+.skill:hover{transform:translateY(-4px);border-color:var(--accent)}
 .skill h3{font-size:18px;font-weight:600;margin-bottom:8px}
 .skill p{color:var(--muted);font-size:14px}
 .triggers{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
-.trig{font-size:11px;padding:3px 8px;border-radius:4px;background:#f0f0ea;color:var(--muted);font-family:JetBrains Mono,monospace}
+.trig{font-size:11px;padding:3px 8px;border-radius:4px;background:#f0f0ea;color:var(--muted);font-family:'JetBrains Mono',monospace}
 .timeline{padding-left:20px;border-left:2px solid var(--border)}
 .tl{margin-bottom:24px;padding-left:16px;position:relative}
 .tl::before{content:'';position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
 .tl h4{font-size:16px;font-weight:600;margin-bottom:4px}
 .tl p{color:var(--muted);font-size:14px}
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.feat{padding:20px;border:1px solid var(--border);border-radius:8px}
+.feat{padding:20px;border:1px solid var(--border);border-radius:8px;transition:transform .25s}
+.feat:hover{transform:translateY(-3px)}
 .feat .ico{font-size:22px;margin-bottom:8px}
 .feat h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .feat p{color:var(--muted);font-size:13px}
@@ -82,6 +82,7 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 .footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 @media (max-width:768px){.compare{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.nav-links{display:none}}
 .reveal{opacity:0;transform:translateY(12px)}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.bar-fill{transition:none}}
 </style>
 </head>
 <body>
@@ -89,40 +90,40 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 <nav>
   <div class="nav-inner">
     <div class="logo">Hyper</div>
-    <div class="nav-links"><a href="#bench">Benchmarks</a><a href="#skills">Skills</a><a href="#how">How</a><a href="https://github.com/opencodepers/hyper">GitHub</a></div>
+    <div class="nav-links"><a href="#bench">Benchmarks</a><a href="showcases.html">100+ Slop</a><a href="#skills">Skills</a><a href="#how">How</a><a href="https://github.com/opencodepers/hyper">GitHub</a></div>
     <a class="nav-cta" href="https://github.com/opencodepers/hyper">Get skill</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container">
-    <div class="eyebrow">100x lean mode · v2</div>
-    <h1>Ship <em>10x less</em> code, with 10x more signal.</h1>
-    <p class="hero-sub">One skill for any CLI AI agent harness. Fuses caveman terse output, ponytail smallest-change, yagni, complexity routing, slop removal, and PowerShell discipline.</p>
-    <div class="hero-actions">
+    <div class="eyebrow reveal">100x lean mode · v2</div>
+    <h1 class="reveal">Ship <em>10x less</em> code, with 10x more signal.</h1>
+    <p class="hero-sub reveal">One skill for any CLI AI agent harness. Fuses caveman terse output, ponytail smallest-change, yagni, complexity routing, slop removal, and PowerShell discipline.</p>
+    <div class="hero-actions reveal">
       <a class="btn btn-primary" href="https://github.com/opencodepers/hyper">Install from GitHub</a>
       <a class="btn btn-ghost" href="#bench">See benchmarks</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="num" data-count="3.26" data-suffix="x">0</div><div class="lbl">Faster PowerShell</div></div>
-      <div class="stat"><div class="num" data-count="81.5" data-suffix="%">0</div><div class="lbl">Smaller website</div></div>
-      <div class="stat"><div class="num" data-count="100" data-suffix="+">0</div><div class="lbl">Ideas shipped</div></div>
+      <div class="stat reveal"><div class="num" data-count="3.26" data-suffix="x">0</div><div class="lbl">Faster PowerShell</div></div>
+      <div class="stat reveal"><div class="num" data-count="81.5" data-suffix="%">0</div><div class="lbl">Smaller website</div></div>
+      <div class="stat reveal"><div class="num" data-count="100" data-suffix="+">0</div><div class="lbl">Ideas shipped</div></div>
     </div>
   </div>
 </section>
 
 <section id="bench">
   <div class="container">
-    <div class="section-label">Benchmarks</div>
-    <h2>Measured, not claimed.</h2>
-    <p class="section-sub">Same task, two approaches. Real numbers.</p>
+    <div class="section-label reveal">Benchmarks</div>
+    <h2 class="reveal">Measured, not claimed.</h2>
+    <p class="section-sub reveal">Same task, two approaches. Real numbers.</p>
     <div class="compare">
-      <div class="card">
+      <div class="card reveal">
         <h3>Without hyper <span class="tag tag-bad">SLOP</span></h3>
         <div class="metric"><span class="k">PowerShell (count .md + sum bytes)</span><span class="v">824.05 ms</span></div>
-        <div class="bar"><div class="bar-fill bar-bad" style="width:100%"></div></div>
+        <div class="bar"><div class="bar-fill bar-bad" data-w="100"></div></div>
         <div class="metric"><span class="k">Landing page size</span><span class="v">8,823 bytes</span></div>
-        <div class="bar"><div class="bar-fill bar-bad" style="width:100%"></div></div>
+        <div class="bar"><div class="bar-fill bar-bad" data-w="100"></div></div>
         <div class="metric"><span class="k">CTAs on hero</span><span class="v">3</span></div>
         <div class="metric"><span class="k">Dependencies</span><span class="v">Google Fonts + Inter</span></div>
         <div class="codeblock"><span class="c"># verbose: collect all, client filter, loop sum</span>
@@ -131,12 +132,12 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 <span class="k">foreach</span> (<span class="k">$f</span> <span class="k">in</span> <span class="k">$files</span>) { <span class="k">if</span> (<span class="k">$f</span>.Extension -eq <span class="s">'.md'</span>) { <span class="k">$md</span> += <span class="k">$f</span> } }
 <span class="k">$b</span> = 0; <span class="k">foreach</span> (<span class="k">$f</span> <span class="k">in</span> <span class="k">$md</span>) { <span class="k">$b</span> += <span class="k">$f</span>.Length }</div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>With hyper <span class="tag tag-good">LEAN</span></h3>
         <div class="metric"><span class="k">PowerShell (count .md + sum bytes)</span><span class="v">253.09 ms</span></div>
-        <div class="bar"><div class="bar-fill bar-good" style="width:30.7%"></div></div>
+        <div class="bar"><div class="bar-fill bar-good" data-w="30.7"></div></div>
         <div class="metric"><span class="k">Landing page size</span><span class="v">1,633 bytes</span></div>
-        <div class="bar"><div class="bar-fill bar-good" style="width:18.5%"></div></div>
+        <div class="bar"><div class="bar-fill bar-good" data-w="18.5"></div></div>
         <div class="metric"><span class="k">CTAs on hero</span><span class="v">1</span></div>
         <div class="metric"><span class="k">Dependencies</span><span class="v">system-ui only</span></div>
         <div class="codeblock"><span class="c"># lean: filter at source, measure sum</span>
@@ -150,21 +151,21 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 
 <section id="skills">
   <div class="container">
-    <div class="section-label">Skills</div>
-    <h2>Three skills. One group.</h2>
-    <p class="section-sub">Install one or all. They compose.</p>
+    <div class="section-label reveal">Skills</div>
+    <h2 class="reveal">Three skills. One group.</h2>
+    <p class="section-sub reveal">Install one or all. They compose.</p>
     <div class="skills">
-      <div class="skill">
+      <div class="skill reveal">
         <h3>hyperlean</h3>
         <p>100x lean mode: routing, scope contract, smallest change, anti-slop, verification, think-smarter, shell discipline.</p>
         <div class="triggers"><span class="trig">hyperlean</span><span class="trig">10x</span><span class="trig">route</span></div>
       </div>
-      <div class="skill">
+      <div class="skill reveal">
         <h3>hyperslop</h3>
         <p>Slop detector + remover across code, UI, copy, architecture, websites (3D + perf). 21 slop signs, CWV, mobile tiers.</p>
         <div class="triggers"><span class="trig">hyperslop</span><span class="trig">deslop</span><span class="trig">slop check</span></div>
       </div>
-      <div class="skill">
+      <div class="skill reveal">
         <h3>hypershell</h3>
         <p>Fast, small, correct PowerShell: filter early, stream, parallelize, measure, safe ops.</p>
         <div class="triggers"><span class="trig">hypershell</span><span class="trig">powershell</span><span class="trig">pwsh</span></div>
@@ -175,38 +176,38 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 
 <section id="how">
   <div class="container">
-    <div class="section-label">How</div>
-    <h2>Route, scope, ship, verify.</h2>
-    <p class="section-sub">Four steps. No ceremony.</p>
+    <div class="section-label reveal">How</div>
+    <h2 class="reveal">Route, scope, ship, verify.</h2>
+    <p class="section-sub reveal">Four steps. No ceremony.</p>
     <div class="timeline">
-      <div class="tl"><h4>1. Route</h4><p>Classify S/M/L/XL via 6-signal scoring. Start narrow. Escalate on contradiction.</p></div>
-      <div class="tl"><h4>2. Scope contract</h4><p>Restate objective, list touched files, note blast radius, define validation.</p></div>
-      <div class="tl"><h4>3. Ship smallest</h4><p>Reuse existing, stdlib, deps. Delete > add. Finish all callers and tests.</p></div>
-      <div class="tl"><h4>4. Verify</h4><p>Cheapest check that catches likely regression. Report change + verification + risk.</p></div>
+      <div class="tl reveal"><h4>1. Route</h4><p>Classify S/M/L/XL via 6-signal scoring. Start narrow. Escalate on contradiction.</p></div>
+      <div class="tl reveal"><h4>2. Scope contract</h4><p>Restate objective, list touched files, note blast radius, define validation.</p></div>
+      <div class="tl reveal"><h4>3. Ship smallest</h4><p>Reuse existing, stdlib, deps. Delete > add. Finish all callers and tests.</p></div>
+      <div class="tl reveal"><h4>4. Verify</h4><p>Cheapest check that catches likely regression. Report change + verification + risk.</p></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="container">
-    <div class="section-label">Inside</div>
-    <h2>What's in the skill.</h2>
+    <div class="section-label reveal">Inside</div>
+    <h2 class="reveal">What's in the skill.</h2>
     <div class="features">
-      <div class="feat"><div class="ico">⚡</div><h3>Token budget by class</h3><p>S ≤6 lines, M ≤12, L ≤20, XL ≤30.</p></div>
-      <div class="feat"><div class="ico">🛡️</div><h3>Security floor</h3><p>OWASP top 10, secrets grep, least privilege.</p></div>
-      <div class="feat"><div class="ico">🎨</div><h3>Anti-slop</h3><p>21 slop signs + remediation. Real content only.</p></div>
-      <div class="feat"><div class="ico">🧪</div><h3>Verification matrix</h3><p>Minimum check per change type.</p></div>
-      <div class="feat"><div class="ico">🧠</div><h3>Think smarter</h3><p>Pre-mortem, inversion, confidence calibration.</p></div>
-      <div class="feat"><div class="ico">🐚</div><h3>Shell discipline</h3><p>Filter at source, stream, measure.</p></div>
+      <div class="feat reveal"><div class="ico">⚡</div><h3>Token budget by class</h3><p>S ≤6 lines, M ≤12, L ≤20, XL ≤30.</p></div>
+      <div class="feat reveal"><div class="ico">🛡️</div><h3>Security floor</h3><p>OWASP top 10, secrets grep, least privilege.</p></div>
+      <div class="feat reveal"><div class="ico">🎨</div><h3>Anti-slop</h3><p>21 slop signs + remediation. Real content only.</p></div>
+      <div class="feat reveal"><div class="ico">🧪</div><h3>Verification matrix</h3><p>Minimum check per change type.</p></div>
+      <div class="feat reveal"><div class="ico">🧠</div><h3>Think smarter</h3><p>Pre-mortem, inversion, confidence calibration.</p></div>
+      <div class="feat reveal"><div class="ico">🐚</div><h3>Shell discipline</h3><p>Filter at source, stream, measure.</p></div>
     </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="container">
-    <h2>Stop shipping slop.</h2>
-    <p>One skill. Any harness. Measured results.</p>
-    <div class="hero-actions" style="justify-content:center">
+    <h2 class="reveal">Stop shipping slop.</h2>
+    <p class="reveal">One skill. Any harness. Measured results.</p>
+    <div class="hero-actions reveal" style="justify-content:center">
       <a class="btn btn-primary" href="https://github.com/opencodepers/hyper">Install from GitHub</a>
       <a class="btn btn-ghost" href="https://github.com/opencodepers/hyper/tree/master/benchmarks">View benchmarks</a>
     </div>
@@ -220,8 +221,10 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.min.js"></script>
 <script>
 const $$ = s => [...document.querySelectorAll(s)];
+const { animate, inView, stagger } = (window.Motion || {});
 function countUp(el){
   const target = parseFloat(el.dataset.count);
   const suffix = el.dataset.suffix || '';
@@ -235,15 +238,15 @@ function countUp(el){
   })(t0);
 }
 setTimeout(()=> $$('.stat .num').forEach(countUp), 400);
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; io.unobserve(e.target);}
+if (inView){
+  $$('.reveal').forEach(el=>{
+    inView(el, ()=>{ animate(el,{opacity:[0,1],y:[16,0]},{duration:.55,easing:'ease-out'}); },{amount:.2,once:true});
   });
-},{threshold:.15});
-$$('.reveal,.card,.skill,.feat,.tl').forEach(el=>{el.style.opacity=0;el.style.transform='translateY(12px)';el.style.transition='opacity .5s ease,transform .5s ease';io.observe(el);});
+  $$('.bar-fill').forEach(el=>{
+    const w = el.dataset.w;
+    inView(el, ()=>{ animate(el,{width:['0%',w+'%']},{duration:1,easing:'ease-out'}); },{amount:.5,once:true});
+  });
+}
 </script>
 </body>
 </html>
-'@
-Set-Content "C:\Users\sophi\hyper-repo\index.html" $html -NoNewline
-Write-Host "written"
