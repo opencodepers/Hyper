@@ -1,4 +1,50 @@
 <!DOCTYPE html>
+</html>
+</body>
+
+// 3D hero
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const canvas = document.getElementById('hero3d');
+  if (!canvas || !window.THREE) return;
+  const THREE = window.THREE;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth/canvas.clientHeight, 0.1, 100);
+  camera.position.z = 4;
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  const geo = new THREE.IcosahedronGeometry(1.4, 1);
+  const mat = new THREE.MeshBasicMaterial({color:0xd6336c, wireframe:true, transparent:true, opacity:.35});
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+  const geo2 = new THREE.TorusGeometry(2.2, .02, 8, 64);
+  const mat2 = new THREE.MeshBasicMaterial({color:0x0f0f0f, transparent:true, opacity:.15});
+  const ring = new THREE.Mesh(geo2, mat2);
+  scene.add(ring);
+  let mx=0, my=0;
+  window.addEventListener('mousemove', e=>{ mx=(e.clientX/window.innerWidth-.5)*.6; my=(e.clientY/window.innerHeight-.5)*.6; });
+  function resize(){ renderer.setSize(canvas.clientWidth, canvas.clientHeight); camera.aspect=canvas.clientWidth/canvas.clientHeight; camera.updateProjectionMatrix(); }
+  window.addEventListener('resize', resize);
+  function loop(){ requestAnimationFrame(loop); mesh.rotation.x += .003; mesh.rotation.y += .005; mesh.rotation.x += (my-mesh.rotation.x)*.02; mesh.rotation.y += (mx-mesh.rotation.y)*.02; ring.rotation.z += .001; renderer.render(scene,camera); }
+  loop();
+})();
+
+// install tabs + copy
+const cmds = { win:'npx github:opencodepers/hyper', mac:'npx github:opencodepers/hyper', linux:'npx github:opencodepers/hyper' };
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('installCmd').textContent = cmds[t.dataset.os];
+}));
+const copyBtn = document.getElementById('copyBtn');
+if (copyBtn) copyBtn.addEventListener('click', async ()=>{
+  const txt = document.getElementById('installCmd').textContent;
+  try { await navigator.clipboard.writeText(txt); copyBtn.textContent='Copied!'; setTimeout(()=>copyBtn.textContent='Copy',1500); }
+  catch(e){ copyBtn.textContent='Copy failed'; }
+});
+</html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -12,6 +58,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 body{line-height:1.55;overflow-x:hidden;transition:background-color .35s,color .35s}
+#hero3d{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4}
+@media (prefers-reduced-motion:reduce){#hero3d{display:none}}
 a{color:inherit}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 body.dark{--bg:#0f0f12;--fg:#f5f5f5;--muted:#9a9a9a;--accent:#ff6b9d;--border:#2a2a30;--card:#17171c}
@@ -78,6 +126,14 @@ h2{font-family:Fraunces,serif;font-size:clamp(32px,5vw,48px);font-weight:800;let
 .feat .ico{margin-bottom:8px;color:var(--accent)}.feat .ico svg{width:22px;height:22px}
 .feat h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .feat p{color:var(--muted);font-size:13px}
+.install-tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{padding:8px 16px;border:1px solid var(--border);border-radius:6px;background:var(--card);cursor:pointer;font-size:14px;font-weight:500}
+.tab.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.install-box{display:flex;align-items:center;gap:12px;background:#1a1a1a;color:#e8e8e8;padding:16px 20px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:14px;justify-content:space-between}
+.install-box code{flex:1;word-break:break-all}
+.install-note{color:var(--muted);font-size:13px;margin-top:12px}
+.install-note code{background:#eee;padding:2px 6px;border-radius:4px;font-size:12px}
+body.dark .install-note code{background:#222}
 .cta{text-align:center;padding:64px 0}
 .cta h2{margin-bottom:12px}
 .cta p{color:var(--muted);margin-bottom:24px}
@@ -99,8 +155,9 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
   </div>
 </nav>
 
-<section class="hero">
-  <div class="container">
+<section class="hero" style="position:relative">
+  <canvas id="hero3d"></canvas>
+  <div class="container" style="position:relative;z-index:1">
     <div class="eyebrow reveal">100x lean mode · v2</div>
     <h1 class="reveal">Ship <em>10x less</em> code, with 10x more signal.</h1>
     <p class="hero-sub reveal">One skill for any CLI AI agent harness. Fuses caveman terse output, ponytail smallest-change, yagni, complexity routing, slop removal, and PowerShell discipline.</p>
@@ -207,6 +264,23 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
   </div>
 </section>
 
+<section id="install">
+  <div class="container">
+    <div class="section-label reveal">Install</div>
+    <h2 class="reveal">One command. Any OS.</h2>
+    <p class="section-sub reveal">Copy, paste, run. Skills auto-detect your harness.</p>
+    <div class="install-tabs reveal">
+      <button class="tab active" data-os="win">Windows</button>
+      <button class="tab" data-os="mac">macOS</button>
+      <button class="tab" data-os="linux">Linux</button>
+    </div>
+    <div class="install-box reveal">
+      <code id="installCmd">npx github:opencodepers/hyper</code>
+      <button id="copyBtn" class="btn btn-ghost" style="padding:8px 14px;font-size:13px">Copy</button>
+    </div>
+    <p class="install-note reveal">Requires Node.js 18+. Add <code>--harness=claude</code> or <code>--project=/path</code> to target.</p>
+  </div>
+</section>
 <section class="cta">
   <div class="container">
     <h2 class="reveal">Stop shipping slop.</h2>
@@ -228,6 +302,7 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
 <div id="loader" style="position:fixed;inset:0;background:#fafaf7;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s">
   <div style="font-family:Fraunces,serif;font-size:28px;font-weight:800;letter-spacing:-1px">Hyper<span style="color:#d6336c">.</span></div>
 </div>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.min.js"></script>
 <script>
