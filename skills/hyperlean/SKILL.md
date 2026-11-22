@@ -211,6 +211,7 @@ Classify findings: CONFIRMED / PLAUSIBLE / REFUTED.
 - Icons: use Lucide (or one consistent set). Never emoji/glyphs. Prefer icon-only + hover text (tooltip) for cleaner UI; always aria-label.
 - Logo: simple, scalable, 1-color, readable at 16px; no gradients/glow/neon; provide SVG+favicon+app icon.
 - Color/contrast: body >=4.5:1, large >=3:1. Tonal scales + semantic roles. Brand identity defined before UI.
+- Dark/light mode persists site-wide: apply before first paint, CSS variables, respect system preference.
 - Motion: purposeful animation on loading/screens/state transitions/feedback; respect reduced-motion; ≤300ms feedback.
 - Test golden path + empty/error/partial states.
 

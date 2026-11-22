@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hyper — ship 10x less code</title>
 <meta name="description" content="Hyperlean is one skill for any CLI AI agent harness. Measured: 3.26x faster PowerShell, 81.5% smaller websites.">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -12,10 +13,10 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 body{line-height:1.55;overflow-x:hidden;transition:background-color .35s,color .35s}
-body.dark{--bg:#0f0f12;--fg:#f5f5f5;--muted:#9a9a9a;--accent:#ff6b9d;--border:#2a2a30;--card:#17171c}
-body.dark .codeblock{background:#0a0a0d}
-body.dark .bar{background:#222}
-body.dark .install-note code{background:#222}
+.dark{--bg:#0f0f12;--fg:#f5f5f5;--muted:#9a9a9a;--accent:#ff6b9d;--border:#2a2a30;--card:#17171c}
+.dark .codeblock{background:#0a0a0d}
+.dark .bar{background:#222}
+.dark .install-note code{background:#222}
 a{color:inherit}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 #hero3d{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4}
@@ -264,11 +265,11 @@ const $$ = s => [...document.querySelectorAll(s)];
 if (window.lucide) lucide.createIcons();
 const loader = null;
 const themeBtn = document.getElementById('themeToggle');
-const saved = localStorage.getItem('theme');
-if (saved === 'dark') { document.body.classList.add('dark'); if (themeBtn) themeBtn.textContent = 'Light'; }
+const isDarkNow = document.documentElement.classList.contains('dark');
+if (isDarkNow && themeBtn) themeBtn.textContent = 'Light';
 if (themeBtn) themeBtn.addEventListener('click', ()=>{
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
+  document.documentElement.classList.toggle('dark');
+  const isDark = document.documentElement.classList.contains('dark');
   themeBtn.textContent = isDark ? 'Light' : 'Dark';
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
   if (window.lucide) lucide.createIcons();

@@ -31,6 +31,7 @@ Active for whole session until "stop hyperslop" or "normal mode". Switch: `/hype
 - Brand identity: define mood, voice, color, type, motion in a brief before UI. Consistent across surfaces.
 - Avoid low-contrast gray-on-white and gray-on-gray.
 - Dark mode: rebalance surfaces (elevation via lightness), desaturate accents, keep contrast.
+- Dark/light mode must persist across the whole site: apply theme before first paint (early script), use CSS variables, respect system preference, no flash of unstyled theme.
 - One accent color; neutrals do the work.
 
 ## 0c. Icons with hover text (cleaner UI)
