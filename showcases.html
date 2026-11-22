@@ -3,151 +3,222 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>100+ AI Slop Showcases ó Hyper</title>
+<title>100+ AI Slop Showcases ‚Äî Hyper</title>
+<meta name="description" content="A catalog of 110 recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.css" />
 <style>
-:root{--bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff}
+:root{--bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff;--bad:#c0392b;--good:#0f5132}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.5}
-.container{max-width:1120px;margin:0 auto;padding:0 24px}
-nav{border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;max-width:1120px;margin:0 auto}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;max-width:1180px;margin:0 auto}
 .logo{font-weight:600;font-size:17px}
 a{color:inherit;text-decoration:none}
-.hero{padding:64px 0 32px}
+.hero{padding:64px 0 24px}
 h1{font-family:Fraunces,serif;font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-1.5px;margin-bottom:12px}
 h1 em{font-style:italic;color:var(--accent)}
-.sub{color:var(--muted);font-size:17px;max-width:640px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding:32px 0}
-.showcase{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:transform .2s,border-color .2s}
-.showcase:hover{transform:translateY(-3px);border-color:var(--accent)}
-.showcase .num{font-family:Fraunces,serif;font-size:22px;color:var(--accent);font-weight:700}
-.showcase h3{font-size:14px;font-weight:600;margin:6px 0 4px}
-.showcase p{font-size:12px;color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font-size:13px;text-align:center}
-.count{font-family:Fraunces,serif;font-size:48px;color:var(--accent);font-weight:700}
+.sub{color:var(--muted);font-size:17px;max-width:720px}
+.count{font-family:Fraunces,serif;font-size:72px;color:var(--accent);font-weight:700;line-height:1;margin-bottom:8px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0}
+.toolbar input{flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card)}
+.toolbar select{padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:24px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.card .head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.card .num{font-family:Fraunces,serif;font-size:20px;color:var(--accent);font-weight:700;min-width:28px}
+.card h3{font-size:14px;font-weight:600;line-height:1.3}
+.card .fix{font-size:12.5px;color:var(--good);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+.card .fix::before{content:'Fix: ';font-weight:600}
+.card .cat{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-top:6px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font-size:13px;text-align:center;margin-top:24px}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
 </style>
 </head>
 <body>
-<nav><div class="logo">Hyper ∑ Slop Showcases</div><a href="index.html">? Home</a></nav>
+<nav><div class="logo">Hyper ¬∑ Slop Showcases</div><a href="index.html">‚Üê Home</a></nav>
 <section class="hero"><div class="container">
-<div class="count">110</div>
+<div class="count" id="count">0</div>
 <h1>AI slop <em>showcases</em>.</h1>
-<p class="sub">A catalog of Colored stripe on rounded cards Borders around every block Colored italic accent text All-caps eyebrow above every heading Badges/dots that mean nothing Monospace labels and inputs Numbers written as words Long noun-heavy titles Emoji as icons Placeholders instead of real images Overstuffed screens Visual metaphors needing labels Demos made of text Glass cards Same radius and shadow on everything Light gray text on white Decorative motion Heavy appear animations Unverifiable social proof Purple gradients Glow/neon/grid on dark Hallucinated APIs Invented config flags Placeholder bodies shipped Fake green tests Over-abstraction Copy-paste duplication Dead code Swallowed errors Magic numbers Wrong variable in copy-paste Buzzword salad copy Vague button labels Generic error messages Empty states with no action Over-long microcopy Lorem ipsum left in Fake avatars/logos Mixed icon sets Inconsistent radius/shadow Missing loading state Missing empty state Missing error state Missing partial-data state No focus states Contrast below 4.5:1 Div-as-button No responsive breakpoints Horizontal scroll on mobile Animation over 300ms Motion without purpose Hero with 3 CTAs Gradient text Default Inter + blue Glassmorphism decoration Neon on everything Grid background decoration Labeled metaphors Text-only demos Fake testimonials Round numbers as proof Initials as avatars Grey logo boxes Empty image frames Overstuffed dashboards AI insight banners Tip of the day boxes Getting-started checklists Quick action clutter Floating stats Chips and extra buttons Banners on banners Noun-heavy headings Feature-list titles Numbers as words in CTAs Monospace everywhere All-caps labels Eyebrows on every section Badges on every feature Dots before labels Colored dots meaning nothing Status colors reused Borders inside borders Boxes inside boxes Spacing off-grid (18,22,30px) No spacing scale No type scale Ad-hoc font sizes Hardcoded colors Hardcoded spacing Missing semantic tokens Primitive-only tokens Component tokens bloat No alias tokens No dark mode plan No theming No RTL consideration No i18n Text truncation issues Overflow not handled No reduced-motion support No prefers-color-scheme No print styles No focus-visible No skip link No landmark regions No alt text No form labels No error association No live regions.Count recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them.</p>
+<p class="sub">A catalog of recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them. Use the search and filters below.</p>
 </div></section>
-<div class="container"><div class="grid">
-<article class='showcase'><span class='num'>1</span><h3>Colored stripe on rounded cards</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>2</span><h3>Borders around every block</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>3</span><h3>Colored italic accent text</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>4</span><h3>All-caps eyebrow above every heading</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>5</span><h3>Badges/dots that mean nothing</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>6</span><h3>Monospace labels and inputs</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>7</span><h3>Numbers written as words</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>8</span><h3>Long noun-heavy titles</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>9</span><h3>Emoji as icons</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>10</span><h3>Placeholders instead of real images</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>11</span><h3>Overstuffed screens</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>12</span><h3>Visual metaphors needing labels</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>13</span><h3>Demos made of text</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>14</span><h3>Glass cards</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>15</span><h3>Same radius and shadow on everything</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>16</span><h3>Light gray text on white</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>17</span><h3>Decorative motion</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>18</span><h3>Heavy appear animations</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>19</span><h3>Unverifiable social proof</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>20</span><h3>Purple gradients</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>21</span><h3>Glow/neon/grid on dark</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>22</span><h3>Hallucinated APIs</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>23</span><h3>Invented config flags</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>24</span><h3>Placeholder bodies shipped</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>25</span><h3>Fake green tests</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>26</span><h3>Over-abstraction</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>27</span><h3>Copy-paste duplication</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>28</span><h3>Dead code</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>29</span><h3>Swallowed errors</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>30</span><h3>Magic numbers</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>31</span><h3>Wrong variable in copy-paste</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>32</span><h3>Buzzword salad copy</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>33</span><h3>Vague button labels</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>34</span><h3>Generic error messages</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>35</span><h3>Empty states with no action</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>36</span><h3>Over-long microcopy</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>37</span><h3>Lorem ipsum left in</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>38</span><h3>Fake avatars/logos</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>39</span><h3>Mixed icon sets</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>40</span><h3>Inconsistent radius/shadow</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>41</span><h3>Missing loading state</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>42</span><h3>Missing empty state</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>43</span><h3>Missing error state</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>44</span><h3>Missing partial-data state</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>45</span><h3>No focus states</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>46</span><h3>Contrast below 4.5:1</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>47</span><h3>Div-as-button</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>48</span><h3>No responsive breakpoints</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>49</span><h3>Horizontal scroll on mobile</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>50</span><h3>Animation over 300ms</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>51</span><h3>Motion without purpose</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>52</span><h3>Hero with 3 CTAs</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>53</span><h3>Gradient text</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>54</span><h3>Default Inter + blue</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>55</span><h3>Glassmorphism decoration</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>56</span><h3>Neon on everything</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>57</span><h3>Grid background decoration</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>58</span><h3>Labeled metaphors</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>59</span><h3>Text-only demos</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>60</span><h3>Fake testimonials</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>61</span><h3>Round numbers as proof</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>62</span><h3>Initials as avatars</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>63</span><h3>Grey logo boxes</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>64</span><h3>Empty image frames</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>65</span><h3>Overstuffed dashboards</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>66</span><h3>AI insight banners</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>67</span><h3>Tip of the day boxes</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>68</span><h3>Getting-started checklists</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>69</span><h3>Quick action clutter</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>70</span><h3>Floating stats</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>71</span><h3>Chips and extra buttons</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>72</span><h3>Banners on banners</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>73</span><h3>Noun-heavy headings</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>74</span><h3>Feature-list titles</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>75</span><h3>Numbers as words in CTAs</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>76</span><h3>Monospace everywhere</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>77</span><h3>All-caps labels</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>78</span><h3>Eyebrows on every section</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>79</span><h3>Badges on every feature</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>80</span><h3>Dots before labels</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>81</span><h3>Colored dots meaning nothing</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>82</span><h3>Status colors reused</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>83</span><h3>Borders inside borders</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>84</span><h3>Boxes inside boxes</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>85</span><h3>Spacing off-grid (18,22,30px)</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>86</span><h3>No spacing scale</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>87</span><h3>No type scale</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>88</span><h3>Ad-hoc font sizes</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>89</span><h3>Hardcoded colors</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>90</span><h3>Hardcoded spacing</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>91</span><h3>Missing semantic tokens</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>92</span><h3>Primitive-only tokens</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>93</span><h3>Component tokens bloat</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>94</span><h3>No alias tokens</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>95</span><h3>No dark mode plan</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>96</span><h3>No theming</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>97</span><h3>No RTL consideration</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>98</span><h3>No i18n</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>99</span><h3>Text truncation issues</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>100</span><h3>Overflow not handled</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>101</span><h3>No reduced-motion support</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>102</span><h3>No prefers-color-scheme</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>103</span><h3>No print styles</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>104</span><h3>No focus-visible</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>105</span><h3>No skip link</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>106</span><h3>No landmark regions</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>107</span><h3>No alt text</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>108</span><h3>No form labels</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>109</span><h3>No error association</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
-<article class='showcase'><span class='num'>110</span><h3>No live regions</h3><p>AI slop pattern. See hyperslop remediation.</p></article>
+<div class="container">
+<div class="toolbar">
+  <input id="q" type="search" placeholder="Search patterns‚Ä¶">
+  <select id="cat">
+    <option value="">All categories</option>
+    <option value="ui">UI</option>
+    <option value="code">Code</option>
+    <option value="copy">Copy</option>
+    <option value="arch">Architecture</option>
+    <option value="output">Output</option>
+    <option value="perf">Perf/3D</option>
+    <option value="a11y">Accessibility</option>
+  </select>
+</div>
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" hidden>No patterns match.</div>
+</div>
+<footer><div class="container" id="foot"></div></footer>
 
-</div></div>
-<footer><div class="container">110 patterns ∑ Hyper ∑ MIT</div></footer>
+<script>
+const DATA = [
+// UI
+["ui","Colored stripe on rounded cards","Reserve colored edges for real status (error/warning)."],
+["ui","Borders around every block","Group with spacing and headings; border only where needed."],
+["ui","Colored italic accent text","Stress a word only when needed; one per page max."],
+["ui","All-caps eyebrow above every heading","Drop unless it carries real info (date/category)."],
+["ui","Badges/dots that mean nothing","Use badges only when they change user action; one meaning per color."],
+["ui","Monospace labels and inputs","Monospace for code/numbers only."],
+["ui","Numbers written as words","Use digits; people scan for numbers."],
+["ui","Long noun-heavy titles","Short, verb-first, specific person."],
+["ui","Emoji as icons","One icon set (Lucide) or none."],
+["ui","Placeholders instead of real images","At least one real screenshot/photo per important page."],
+["ui","Overstuffed screens","Remove elements with no user action."],
+["ui","Visual metaphors needing labels","Show the real product or one sentence."],
+["ui","Demos made of text","Screenshot/video/GIF of one real task."],
+["ui","Glass cards","Blur only over content; not static cards."],
+["ui","Same radius and shadow on everything","Differentiate; most elements need no shadow."],
+["ui","Light gray text on white","Contrast >=4.5:1."],
+["ui","Decorative motion","Animate only changes; allow pause."],
+["ui","Heavy appear animations","Show content immediately; <=300ms; respect reduced-motion."],
+["ui","Unverifiable social proof","Real names/roles/photos/links or remove."],
+["ui","Purple gradients","Colors fitting product; solid text."],
+["ui","Glow/neon/grid on dark","Remove glow/grid; neon only focal."],
+["ui","Gradient text","Solid text; emphasize with size/weight."],
+["ui","Default Inter + blue","Deliberate font/color tied to brand."],
+["ui","Glassmorphism decoration","No decorative blur."],
+["ui","Neon on everything","Neon only for focus."],
+["ui","Grid background decoration","Grids belong on maps/canvases."],
+["ui","Labeled metaphors","Show real product."],
+["ui","Text-only demos","Screenshot/video."],
+["ui","Fake testimonials","Real proof or remove."],
+["ui","Round numbers as proof","Real metrics or remove."],
+["ui","Initials as avatars","Real photos."],
+["ui","Grey logo boxes","Real logos."],
+["ui","Empty image frames","Real images or remove."],
+["ui","Hero with 3 CTAs","One primary CTA."],
+["ui","Mixed icon sets","One icon set (Lucide)."],
+["ui","Inconsistent radius/shadow","Consistent scale."],
+["ui","Chips and extra buttons","Remove clutter."],
+["ui","Banners on banners","One banner max."],
+["ui","Noun-heavy headings","Verb-first, specific."],
+["ui","Feature-list titles","Pitch result for a person."],
+["ui","Numbers as words in CTAs","Use digits."],
+["ui","Monospace everywhere","Monospace for code/numbers."],
+["ui","All-caps labels","Sentence case unless justified."],
+["ui","Eyebrows on every section","Drop unless real info."],
+["ui","Badges on every feature","Rare badges only."],
+["ui","Dots before labels","Remove decorative dots."],
+["ui","Colored dots meaning nothing","Color means one thing."],
+["ui","Status colors reused","One meaning per color."],
+["ui","Borders inside borders","Group with spacing."],
+["ui","Boxes inside boxes","Flatten hierarchy."],
+["ui","Spacing off-grid","Use a spacing scale (4/8px)."],
+["ui","No spacing scale","Define a scale."],
+["ui","No type scale","Define a modular scale."],
+["ui","Ad-hoc font sizes","Use scale tokens."],
+["ui","Hardcoded colors","Use color tokens."],
+["ui","Hardcoded spacing","Use spacing tokens."],
+["ui","Missing semantic tokens","Add semantic layer."],
+["ui","Primitive-only tokens","Add semantic aliases."],
+["ui","Component tokens bloat","Tokens only where needed."],
+["ui","No alias tokens","Add alias tier."],
+["ui","No dark mode plan","Plan theming."],
+["ui","No theming","Add theming system."],
+["ui","No RTL consideration","Design for RTL."],
+["ui","No i18n","Plan localization."],
+["ui","Text truncation issues","Handle overflow gracefully."],
+["ui","Overflow not handled","Define overflow behavior."],
+["ui","No reduced-motion support","Respect prefers-reduced-motion."],
+["ui","No prefers-color-scheme","Support system theme."],
+["ui","No print styles","Add print CSS if needed."],
+["ui","No focus-visible","Visible focus states."],
+["ui","No skip link","Add skip link."],
+["ui","No landmark regions","Use semantic landmarks."],
+["ui","No alt text","Alt text for images."],
+["ui","No form labels","Label all inputs."],
+["ui","No error association","Associate errors with fields."],
+["ui","No live regions","Use aria-live for updates."],
+// Code
+["code","Hallucinated APIs","Verify against installed versions; remove feature if absent."],
+["code","Invented config flags","Remove unused flags/env vars."],
+["code","Placeholder bodies shipped","Implement or remove."],
+["code","Fake green tests","Real tests or delete; never weaken."],
+["code","Over-abstraction","Collapse to concrete implementation."],
+["code","Copy-paste duplication","Extract after 3rd use."],
+["code","Dead code","Delete completely."],
+["code","Swallowed errors","Handle or rethrow with context."],
+["code","Magic numbers","Named constants."],
+["code","Wrong variable in copy-paste","Review diffs carefully."],
+// Copy
+["copy","Buzzword salad copy","Specific, user-centered words."],
+["copy","Vague button labels","Context-specific labels."],
+["copy","Generic error messages","Actionable errors with recovery."],
+["copy","Empty states with no action","Add next action."],
+["copy","Over-long microcopy","Cut to essentials."],
+["copy","Lorem ipsum left in","Real content."],
+["copy","Fake avatars/logos","Real assets."],
+// Arch
+["arch","Overstuffed dashboards","Answer 1-2 questions per dashboard."],
+["arch","AI insight banners","Remove unless actionable."],
+["arch","Tip of the day boxes","Remove."],
+["arch","Getting-started checklists","Only if first-run needed."],
+["arch","Quick action clutter","Remove low-value actions."],
+["arch","Floating stats","Remove decorative stats."],
+["arch","Missing loading state","Add skeleton/spinner."],
+["arch","Missing empty state","Add empty state with action."],
+["arch","Missing error state","Add error + recovery."],
+["arch","Missing partial-data state","Handle partial."],
+["arch","No focus states","Add focus."],
+["arch","Contrast below 4.5:1","Fix contrast."],
+["arch","Div-as-button","Use button element."],
+["arch","No responsive breakpoints","Add breakpoints."],
+["arch","Horizontal scroll on mobile","Fix layout."],
+["arch","Animation over 300ms","Reduce duration."],
+["arch","Motion without purpose","Remove decorative motion."],
+["arch","Overstuffed screens","Remove low-value elements."],
+// Perf/3D
+["perf","No reduced-motion support","Respect prefers-reduced-motion."],
+["perf","Heavy appear animations","Show content immediately."],
+["perf","Decorative motion","Animate only changes."],
+// Output
+["output","Restating request","Lead with result."],
+["output","Narrating steps","No step narration."],
+["output","Hedging boilerplate","Be decisive."],
+["output","Inventing paths/APIs","Verify before claiming."],
+["output","Claiming success unverified","Run checks first."],
+["output","Over-long replies","Match reply to task size."]
+];
+
+const grid = document.getElementById('grid');
+const q = document.getElementById('q');
+const cat = document.getElementById('cat');
+const empty = document.getElementById('empty');
+const count = document.getElementById('count');
+const foot = document.getElementById('foot');
+
+function render() {
+  const term = q.value.trim().toLowerCase();
+  const c = cat.value;
+  const filtered = DATA.filter(([k,name]) => (!c || k===c) && (!term || name.toLowerCase().includes(term)));
+  grid.innerHTML = '';
+  filtered.forEach(([k,name,fix],i) => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `<div class="head"><span class="num">${i+1}</span><h3>${name}</h3></div><div class="cat">${k}</div><div class="fix">${fix}</div>`;
+    grid.appendChild(el);
+  });
+  count.textContent = filtered.length;
+  empty.hidden = filtered.length !== 0;
+  foot.textContent = `${DATA.length} patterns total ¬∑ Hyper ¬∑ MIT`;
+}
+q.addEventListener('input', render);
+cat.addEventListener('change', render);
+render();
+</script>
 </body>
 </html>
