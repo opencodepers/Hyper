@@ -20,13 +20,26 @@ Key lever: filter at the provider (`-Filter`) instead of collecting then filteri
 
 Key levers: remove decorative slop, one CTA, real content, minimal CSS.
 
+## Websites (measured by file size)
+
+Full self-contained landing pages (inline CSS/JS, no build step).
+
+| Version | Approach | Size (bytes) | Reduction |
+|---------|----------|--------------|-----------|
+| Without hyper | Slop: gradient hero, glass cards, glow+grid, badges, emoji, lorem, 3 CTAs, heavy CSS, animations | 8823 | — |
+| With hyper | Lean: one H1 + one line + one CTA + real screenshot + 3 bullets, minimal CSS, a11y, reduced-motion | 1633 | 81.5% |
+
+Key levers: remove decorative slop, single CTA, real content, minimal CSS, accessibility, reduced-motion.
+
 ## Method
 
 - PowerShell: `Measure-Command` over the same directory, 1 run each (warm-ish). Re-run for stable numbers.
-- UI: raw byte size of self-contained HTML files. No build step.
+- UI (single-file): raw byte size of self-contained HTML files. No build step.
+- Websites: full landing pages, raw byte size.
 
 ## Files
 
-- `ui-slop.html` — verbose AI-slop version.
-- `ui-lean.html` — lean version.
+- `ui-slop.html` / `ui-lean.html` — single-file micro versions.
+- `websites/without/index.html` — full slop landing page.
+- `websites/with/index.html` — full lean landing page.
 - PowerShell scripts inline above (reproducible).

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyper — close your books in 2 days</title>
+<style>
+:root{--fg:#111;--muted:#444;--accent:#111;--border:#ddd;--bg:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+main{max-width:720px;margin:0 auto;padding:48px 24px}
+h1{font-size:36px;margin:0 0 12px}
+p{color:var(--muted);margin:0 0 24px}
+.btn{background:var(--accent);color:#fff;padding:12px 20px;border:0;border-radius:6px;cursor:pointer;font-size:16px}
+.shot{width:100%;border:1px solid var(--border);border-radius:8px;margin:24px 0}
+ul{padding-left:20px;color:var(--muted)}
+li{margin:6px 0}
+footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>Close your books in 2 days</h1>
+<p>Finance teams match bank transactions and send reports from one place.</p>
+<button class="btn" type="button">Start free</button>
+<img class="shot" src="app.png" alt="App screenshot showing matched transactions">
+<ul>
+<li>Match transactions automatically</li>
+<li>Export reports in one click</li>
+<li>Audit trail included</li>
+</ul>
+<footer>© 2026 Hyper · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer>
+</main>
+</body>
+</html>
+'@
+Set-Content "C:\Users\sophi\hyper-repo\benchmarks\websites\with\index.html" $lean -NoNewline
+Write-Host "written"
