@@ -1,0 +1,45 @@
+# UI Styles — Detailed Reference
+
+One file per style. Full catalog: https://github.com/jacoblbagent/ui-design-styles
+
+- [Skeuomorphism](styles/skeuomorphism.md) — A style that mimics real-world physical objects through textures, shadows, and gradients.
+- [Flat design](styles/flat-design.md) — A 2D style with no shadows or gradients, solid colors, simple icons, clean typography.
+- [Material Design](styles/material-design.md) — Google's paper metaphor with elevation via shadows, ripple feedback, grid, bold color.
+- [Material 3 (Material You)](styles/material-3.md) — Dynamic color from wallpaper, tonal palettes, rounded corners, personalization.
+- [Swiss (International)](styles/swiss.md) — Grid-based, asymmetric layouts with strong typography hierarchy and generous whitespace.
+- [Minimalism](styles/minimalism.md) — Maximum whitespace, minimal elements, monochrome or one accent, content-first.
+- [Editorial](styles/editorial.md) — Magazine-like layouts with large serif display, narrow reading column, drop caps.
+- [Brutalist web](styles/brutalist-web.md) — Raw, unstyled-feeling HTML with system fonts, high contrast, exposed structure.
+- [Fluent Design](styles/fluent-design.md) — Microsoft's light, depth, motion, material (acrylic), reveal highlight, layered system.
+- [Neumorphism](styles/neumorphism.md) — Soft UI where background matches surface; dual shadows create extrusion/intrusion.
+- [Claymorphism](styles/claymorphism.md) — Soft, puffy 3D with inner+outer shadows, rounded corners, pastel colors.
+- [Glassmorphism](styles/glassmorphism.md) — Frosted glass surfaces with blur, transparency, thin light borders.
+- [Liquid glass](styles/liquid-glass.md) — Fluid, organic glass surfaces with heavy blur and flowing shapes (Apple-style).
+- [Aurora / mesh gradients](styles/aurora-mesh.md) — Blurred multi-color gradient blobs behind content, subtly animated.
+- [Neo-brutalism](styles/neo-brutalism.md) — Bold, raw aesthetic with thick borders, hard offset shadows, saturated colors.
+- [3D render illustration](styles/3d-render.md) — 3D rendered objects with soft lighting, pastel backgrounds, depth.
+- [Holographic / iridescent](styles/holographic.md) — Rainbow shimmer, shifting colors, metallic sheen.
+- [Maximalism](styles/maximalism.md) — Dense, layered, bold colors, mixed patterns — more is more.
+- [Memphis](styles/memphis.md) — Geometric shapes, bright primary colors, patterns (dots, zigzags), playful 80s.
+- [Vaporwave](styles/vaporwave.md) — Retro-futuristic: neon pink/cyan, glitch, VHS, 80s/90s nostalgia.
+- [Cyberpunk HUD](styles/cyberpunk-hud.md) — Neon on dark, scanlines, glitch, monospace, tech UI, high contrast.
+- [Y2K / Frutiger Aero](styles/y2k-frutiger-aero.md) — Glossy, bubbly, bright, skeuomorphic buttons, gradients, chrome.
+- [Retro-futurism](styles/retro-futurism.md) — 70s/80s sci-fi: chrome, neon, grid lines, synthwave.
+- [Comic / pop art](styles/comic-pop-art.md) — Bold outlines, halftone dots, primary colors, speech bubbles.
+- [Organic / hand-drawn](styles/organic-hand-drawn.md) — Sketchy, wobbly lines, hand-drawn icons, paper texture, warm.
+- [Kinetic typography](styles/kinetic-typography.md) — Animated text as hero, large type, motion-driven.
+- [Luxury / premium](styles/luxury-premium.md) — Generous whitespace, thin weights, serif display, muted palette, slow subtle motion.
+- [Playful chunky](styles/playful-chunky.md) — Rounded, thick, friendly, bright, toy-like.
+- [Nordic](styles/nordic.md) — Calm, muted, natural, light wood, soft grays, airy.
+- [Isometric / axonometric](styles/isometric.md) — 3D isometric illustrations, grid-aligned, technical.
+- [Terminal / CLI](styles/terminal-cli.md) — Monospace, character grid, reverse video, 16-color palette, dark bg.
+- [Spatial / depth](styles/spatial-depth.md) — Z-depth, layered planes, parallax, 3D transforms.
+- [Dark-first / OLED](styles/dark-first-oled.md) — True black (#000), elevation via border, desaturated hues, OLED-friendly.
+- [Enterprise / B2B](styles/enterprise-b2b.md) — Dense, 28-36px rows, 4px radii, hairline dividers, muted palette, data-first.
+- [iOS (Human Interface)](styles/ios-hig.md) — SF Pro, rounded, translucency, large titles, haptics, safe areas.
+- [Art Deco](styles/art-deco.md) — Geometric, gold/black, symmetrical, decorative lines, 1920s.
+- [Grunge / distressed](styles/grunge-distressed.md) — Rough textures, torn edges, dark, chaotic.
+- [Corporate Memphis](styles/corporate-memphis.md) — Flat vector characters, bright colors, friendly, generic.
+- [Pixel art / 8-bit](styles/pixel-art.md) — Pixelated, blocky, retro game aesthetic.
+- [Japanese web density](styles/japanese-web-density.md) — Dense, information-rich, small type, many links, compact.
+- [Anti-design / webcore](styles/anti-design-webcore.md) — Deliberately chaotic, broken layouts, clashing colors, raw.
