@@ -24,6 +24,13 @@ Active for whole session until "stop hyperslop" or "normal mode". Switch: `/hype
 - Never introduce new slop while fixing.
 - Keep working code working: run tests/checks after removal.
 
+## 0d. No hardcoded values (use tokens)
+
+- Never hardcode numbers (spacing, sizes, radii, durations, z-index) or colors in components. Use design tokens so values change dynamically (theming, dark mode, brand variants).
+- Tokens: primitive (raw scale) -> semantic (role) -> component (scoped). Reference semantic/component tokens in code, never raw values.
+- Dynamic theming: swap token values at runtime; components stay unchanged.
+- Magic numbers/strings must be named constants or tokens.
+
 ## 0b. Color, contrast & brand identity
 
 - Contrast: body text >=4.5:1, large text/icons >=3:1 against background. Check with a contrast tool.
