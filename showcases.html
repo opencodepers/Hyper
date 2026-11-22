@@ -7,32 +7,39 @@
 <meta name="description" content="A catalog of 110 recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.css" />
 <style>
-:root{--bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff;--bad:#c0392b;--good:#0f5132}
+:root{--bg:#fafaf7;--fg:#0f0f0f;--muted:#555;--accent:#d6336c;--border:#e6e6e0;--card:#fff;--bad:#c0392b;--good:#0f5132;--code:#1a1a1a}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
 .container{max-width:1180px;margin:0 auto;padding:0 24px}
 nav{border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;max-width:1180px;margin:0 auto}
 .logo{font-weight:600;font-size:17px}
-a{color:inherit;text-decoration:none}
 .hero{padding:64px 0 24px}
 h1{font-family:Fraunces,serif;font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-1.5px;margin-bottom:12px}
 h1 em{font-style:italic;color:var(--accent)}
 .sub{color:var(--muted);font-size:17px;max-width:720px}
-.count{font-family:Fraunces,serif;font-size:72px;color:var(--accent);font-weight:700;line-height:1;margin-bottom:8px}
+.count{font-family:Fraunces,serif;font-size:88px;color:var(--accent);font-weight:700;line-height:1;margin-bottom:8px}
 .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0}
 .toolbar input{flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card)}
-.toolbar select{padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--card)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 12px;border:1px solid var(--border);border-radius:999px;font-size:12px;cursor:pointer;background:var(--card);transition:all .2s}
+.chip:hover{border-color:var(--accent)}
+.chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:24px 0}
 .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;transition:transform .2s,border-color .2s}
 .card:hover{transform:translateY(-3px);border-color:var(--accent)}
-.card .head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.card .num{font-family:Fraunces,serif;font-size:20px;color:var(--accent);font-weight:700;min-width:28px}
+.card .head{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.card .num{font-family:Fraunces,serif;font-size:18px;color:var(--accent);font-weight:700;min-width:26px}
 .card h3{font-size:14px;font-weight:600;line-height:1.3}
 .card .fix{font-size:12.5px;color:var(--good);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
 .card .fix::before{content:'Fix: ';font-weight:600}
 .card .cat{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-top:6px}
+.demo{background:#1a1a1a;color:#e8e8e8;border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;overflow-x:auto;line-height:1.5;margin-top:10px;display:none}
+.demo.show{display:block}
+.demo .bad{color:#ff6b6b}
+.demo .good{color:#51cf66}
+.toggle{font-size:11px;color:var(--accent);cursor:pointer;margin-top:6px;display:inline-block}
 .empty{padding:40px;text-align:center;color:var(--muted)}
 footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font-size:13px;text-align:center;margin-top:24px}
 @media (prefers-reduced-motion:reduce){.card{transition:none}}
@@ -43,21 +50,12 @@ footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font
 <section class="hero"><div class="container">
 <div class="count" id="count">0</div>
 <h1>AI slop <em>showcases</em>.</h1>
-<p class="sub">A catalog of recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them. Use the search and filters below.</p>
+<p class="sub">110 recognizable AI-slop patterns across code, UI, copy, architecture, and output. Each is a defect. Hyperslop detects and removes them. Search and filter below; click "show example" for a code sample.</p>
 </div></section>
 <div class="container">
 <div class="toolbar">
   <input id="q" type="search" placeholder="Search patterns…">
-  <select id="cat">
-    <option value="">All categories</option>
-    <option value="ui">UI</option>
-    <option value="code">Code</option>
-    <option value="copy">Copy</option>
-    <option value="arch">Architecture</option>
-    <option value="output">Output</option>
-    <option value="perf">Perf/3D</option>
-    <option value="a11y">Accessibility</option>
-  </select>
+  <div class="chips" id="chips"></div>
 </div>
 <div class="grid" id="grid"></div>
 <div class="empty" id="empty" hidden>No patterns match.</div>
@@ -66,158 +64,185 @@ footer{border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font
 
 <script>
 const DATA = [
-// UI
-["ui","Colored stripe on rounded cards","Reserve colored edges for real status (error/warning)."],
-["ui","Borders around every block","Group with spacing and headings; border only where needed."],
-["ui","Colored italic accent text","Stress a word only when needed; one per page max."],
-["ui","All-caps eyebrow above every heading","Drop unless it carries real info (date/category)."],
-["ui","Badges/dots that mean nothing","Use badges only when they change user action; one meaning per color."],
-["ui","Monospace labels and inputs","Monospace for code/numbers only."],
-["ui","Numbers written as words","Use digits; people scan for numbers."],
-["ui","Long noun-heavy titles","Short, verb-first, specific person."],
-["ui","Emoji as icons","One icon set (Lucide) or none."],
-["ui","Placeholders instead of real images","At least one real screenshot/photo per important page."],
-["ui","Overstuffed screens","Remove elements with no user action."],
-["ui","Visual metaphors needing labels","Show the real product or one sentence."],
-["ui","Demos made of text","Screenshot/video/GIF of one real task."],
-["ui","Glass cards","Blur only over content; not static cards."],
-["ui","Same radius and shadow on everything","Differentiate; most elements need no shadow."],
-["ui","Light gray text on white","Contrast >=4.5:1."],
-["ui","Decorative motion","Animate only changes; allow pause."],
-["ui","Heavy appear animations","Show content immediately; <=300ms; respect reduced-motion."],
-["ui","Unverifiable social proof","Real names/roles/photos/links or remove."],
-["ui","Purple gradients","Colors fitting product; solid text."],
-["ui","Glow/neon/grid on dark","Remove glow/grid; neon only focal."],
-["ui","Gradient text","Solid text; emphasize with size/weight."],
-["ui","Default Inter + blue","Deliberate font/color tied to brand."],
-["ui","Glassmorphism decoration","No decorative blur."],
-["ui","Neon on everything","Neon only for focus."],
-["ui","Grid background decoration","Grids belong on maps/canvases."],
-["ui","Labeled metaphors","Show real product."],
-["ui","Text-only demos","Screenshot/video."],
-["ui","Fake testimonials","Real proof or remove."],
-["ui","Round numbers as proof","Real metrics or remove."],
-["ui","Initials as avatars","Real photos."],
-["ui","Grey logo boxes","Real logos."],
-["ui","Empty image frames","Real images or remove."],
-["ui","Hero with 3 CTAs","One primary CTA."],
-["ui","Mixed icon sets","One icon set (Lucide)."],
-["ui","Inconsistent radius/shadow","Consistent scale."],
-["ui","Chips and extra buttons","Remove clutter."],
-["ui","Banners on banners","One banner max."],
-["ui","Noun-heavy headings","Verb-first, specific."],
-["ui","Feature-list titles","Pitch result for a person."],
-["ui","Numbers as words in CTAs","Use digits."],
-["ui","Monospace everywhere","Monospace for code/numbers."],
-["ui","All-caps labels","Sentence case unless justified."],
-["ui","Eyebrows on every section","Drop unless real info."],
-["ui","Badges on every feature","Rare badges only."],
-["ui","Dots before labels","Remove decorative dots."],
-["ui","Colored dots meaning nothing","Color means one thing."],
-["ui","Status colors reused","One meaning per color."],
-["ui","Borders inside borders","Group with spacing."],
-["ui","Boxes inside boxes","Flatten hierarchy."],
-["ui","Spacing off-grid","Use a spacing scale (4/8px)."],
-["ui","No spacing scale","Define a scale."],
-["ui","No type scale","Define a modular scale."],
-["ui","Ad-hoc font sizes","Use scale tokens."],
-["ui","Hardcoded colors","Use color tokens."],
-["ui","Hardcoded spacing","Use spacing tokens."],
-["ui","Missing semantic tokens","Add semantic layer."],
-["ui","Primitive-only tokens","Add semantic aliases."],
-["ui","Component tokens bloat","Tokens only where needed."],
-["ui","No alias tokens","Add alias tier."],
-["ui","No dark mode plan","Plan theming."],
-["ui","No theming","Add theming system."],
-["ui","No RTL consideration","Design for RTL."],
-["ui","No i18n","Plan localization."],
-["ui","Text truncation issues","Handle overflow gracefully."],
-["ui","Overflow not handled","Define overflow behavior."],
-["ui","No reduced-motion support","Respect prefers-reduced-motion."],
-["ui","No prefers-color-scheme","Support system theme."],
-["ui","No print styles","Add print CSS if needed."],
-["ui","No focus-visible","Visible focus states."],
-["ui","No skip link","Add skip link."],
-["ui","No landmark regions","Use semantic landmarks."],
-["ui","No alt text","Alt text for images."],
-["ui","No form labels","Label all inputs."],
-["ui","No error association","Associate errors with fields."],
-["ui","No live regions","Use aria-live for updates."],
+["ui","Colored stripe on rounded cards","Reserve colored edges for real status (error/warning).",".card{border-left:4px solid #6366f1} /* slop */\n.card{border:1px solid #ddd} /* fix */"],
+["ui","Borders around every block","Group with spacing and headings; border only where needed.","section{border:1px solid #ddd} /* slop */\nsection{padding:24px} /* fix */"],
+["ui","Colored italic accent text","Stress a word only when needed; one per page max.","h1 em{color:#a78bfa;font-style:italic} /* slop */\nh1 em{font-weight:800} /* fix */"],
+["ui","All-caps eyebrow above every heading","Drop unless it carries real info (date/category).",".eyebrow{text-transform:uppercase} /* slop */\n/* drop eyebrow */ /* fix */"],
+["ui","Badges/dots that mean nothing","Use badges only when they change user action; one meaning per color.","<span class='badge'>NEW</span> /* slop */\n/* remove badge */ /* fix */"],
+["ui","Monospace labels and inputs","Monospace for code/numbers only.","label{font-family:monospace} /* slop */\nlabel{font-family:system-ui} /* fix */"],
+["ui","Numbers written as words","Use digits; people scan for numbers.","'three features' /* slop */\n'3 features' /* fix */"],
+["ui","Long noun-heavy titles","Short, verb-first, specific person.","'Seamless AI-Powered Synergy Platform' /* slop */\n'Close your books in 2 days' /* fix */"],
+["ui","Emoji as icons","One icon set (Lucide) or none.","<span>🚀</span> /* slop */\n<i data-lucide='zap'></i> /* fix */"],
+["ui","Placeholders instead of real images","At least one real screenshot/photo per important page.","<div class='placeholder'></div> /* slop */\n<img src='app.png' alt='...'> /* fix */"],
+["ui","Overstuffed screens","Remove elements with no user action.","/* 6 cards + 3 CTAs + banners */ /* slop */\n/* 1 CTA + 3 bullets */ /* fix */"],
+["ui","Visual metaphors needing labels","Show the real product or one sentence.","<svg>...</svg><span>AI power</span> /* slop */\n<p>One clear sentence.</p> /* fix */"],
+["ui","Demos made of text","Screenshot/video/GIF of one real task.","<ul><li>Feature A</li>...</ul> /* slop */\n<img src='demo.gif'> /* fix */"],
+["ui","Glass cards","Blur only over content; not static cards.","backdrop-filter:blur(12px) /* slop */\nbackground:#fff /* fix */"],
+["ui","Same radius and shadow on everything","Differentiate; most elements need no shadow.","border-radius:16px;box-shadow:... /* slop */\nborder-radius:6px /* fix */"],
+["ui","Light gray text on white","Contrast >=4.5:1.","color:#9ca3af /* slop */\ncolor:#444 /* fix */"],
+["ui","Decorative motion","Animate only changes; allow pause.","animation:pulse 1.5s infinite /* slop */\n/* animate on state change */ /* fix */"],
+["ui","Heavy appear animations","Show content immediately; <=300ms; respect reduced-motion.","opacity:0;transform:translateY(20px) /* slop */\n/* show immediately */ /* fix */"],
+["ui","Unverifiable social proof","Real names/roles/photos/links or remove.","'John D., CEO, Acme' /* slop */\n/* real proof or remove */ /* fix */"],
+["ui","Purple gradients","Colors fitting product; solid text.","background:linear-gradient(#6366f1,#a855f7) /* slop */\nbackground:#111 /* fix */"],
+["ui","Glow/neon/grid on dark","Remove glow/grid; neon only focal.","box-shadow:0 0 40px #6366f1 /* slop */\n/* remove glow */ /* fix */"],
+["ui","Gradient text","Solid text; emphasize with size/weight.","background-clip:text;color:transparent /* slop */\ncolor:#111;font-weight:800 /* fix */"],
+["ui","Default Inter + blue","Deliberate font/color tied to brand.","font-family:Inter;color:#6366f1 /* slop */\nfont-family:system-ui;color:#111 /* fix */"],
+["ui","Glassmorphism decoration","No decorative blur.","backdrop-filter:blur(8px) /* slop */\n/* remove */ /* fix */"],
+["ui","Neon on everything","Neon only for focus.","text-shadow:0 0 8px #0ff /* slop */\n/* remove */ /* fix */"],
+["ui","Grid background decoration","Grids belong on maps/canvases.","background-image:linear-gradient(...) /* slop */\n/* remove */ /* fix */"],
+["ui","Labeled metaphors","Show real product.","<svg/><span>AI power</span> /* slop */\n<p>One sentence.</p> /* fix */"],
+["ui","Text-only demos","Screenshot/video.","<ul>...</ul> /* slop */\n<img src='demo.gif'> /* fix */"],
+["ui","Fake testimonials","Real proof or remove.","'Best tool ever!' - John D. /* slop */\n/* real quote + link */ /* fix */"],
+["ui","Round numbers as proof","Real metrics or remove.","'10,000+ users' /* slop */\n/* real metric */ /* fix */"],
+["ui","Initials as avatars","Real photos.","<div>JD</div> /* slop */\n<img src='avatar.jpg'> /* fix */"],
+["ui","Grey logo boxes","Real logos.","<div class='logo-box'></div> /* slop */\n<img src='logo.svg'> /* fix */"],
+["ui","Empty image frames","Real images or remove.","<div class='img-placeholder'></div> /* slop */\n/* remove */ /* fix */"],
+["ui","Hero with 3 CTAs","One primary CTA.","<button>Get</button><button>Learn</button><button>Demo</button> /* slop */\n<button>Start free</button> /* fix */"],
+["ui","Mixed icon sets","One icon set (Lucide).","<i class='fa-...'></i><span>🚀</span> /* slop */\n<i data-lucide='zap'></i> /* fix */"],
+["ui","Inconsistent radius/shadow","Consistent scale.","border-radius:16px 8px 4px /* slop */\nborder-radius:6px /* fix */"],
+["ui","Chips and extra buttons","Remove clutter.","<span class='chip'>...</span> /* slop */\n/* remove */ /* fix */"],
+["ui","Banners on banners","One banner max.","<div class='banner'>...</div><div class='banner'> /* slop */\n/* one banner */ /* fix */"],
+["ui","Noun-heavy headings","Verb-first, specific.","'Seamless AI-Powered Synergy Platform' /* slop */\n'Close your books in 2 days' /* fix */"],
+["ui","Feature-list titles","Pitch result for a person.","'Features: A, B, C' /* slop */\n'Close your books in 2 days' /* fix */"],
+["ui","Numbers as words in CTAs","Use digits.","'Get started now' /* slop */\n'Start free' /* fix */"],
+["ui","Monospace everywhere","Monospace for code/numbers.","font-family:monospace /* slop */\nfont-family:system-ui /* fix */"],
+["ui","All-caps labels","Sentence case unless justified.","text-transform:uppercase /* slop */\n/* sentence case */ /* fix */"],
+["ui","Eyebrows on every section","Drop unless real info.","<span class='eyebrow'>FEATURES</span> /* slop */\n/* drop */ /* fix */"],
+["ui","Badges on every feature","Rare badges only.","<span class='badge'>NEW</span> /* slop */\n/* remove */ /* fix */"],
+["ui","Dots before labels","Remove decorative dots.","<span class='dot'></span>Label /* slop */\n/* remove dot */ /* fix */"],
+["ui","Colored dots meaning nothing","Color means one thing.","<span style='background:green'></span> /* slop */\n/* meaningful color */ /* fix */"],
+["ui","Status colors reused","One meaning per color.","color:#22c55e for 'live' and 'success' /* slop */\n/* distinct meanings */ /* fix */"],
+["ui","Borders inside borders","Group with spacing.",".card{border:1px solid #ddd}.inner{border:1px solid #eee} /* slop */\n/* spacing */ /* fix */"],
+["ui","Boxes inside boxes","Flatten hierarchy.","<div class='box'><div class='box'> /* slop */\n/* flatten */ /* fix */"],
+["ui","Spacing off-grid","Use a spacing scale (4/8px).","padding:18px 22px 30px /* slop */\npadding:16px 24px /* fix */"],
+["ui","No spacing scale","Define a scale.","margin:12px 7px 19px /* slop */\n/* 4/8 scale */ /* fix */"],
+["ui","No type scale","Define a modular scale.","font-size:13px 17px 22px /* slop */\n/* modular scale */ /* fix */"],
+["ui","Ad-hoc font sizes","Use scale tokens.","font-size:14.5px /* slop */\nfont-size:var(--text-sm) /* fix */"],
+["ui","Hardcoded colors","Use color tokens.","color:#6366f1 /* slop */\ncolor:var(--accent) /* fix */"],
+["ui","Hardcoded spacing","Use spacing tokens.","padding:20px /* slop */\npadding:var(--space-5) /* fix */"],
+["ui","Missing semantic tokens","Add semantic layer.","--blue-500:#3b82f6 /* slop */\n--color-accent:var(--blue-500) /* fix */"],
+["ui","Primitive-only tokens","Add semantic aliases.","/* only primitives */ /* slop */\n/* add semantic */ /* fix */"],
+["ui","Component tokens bloat","Tokens only where needed.","--button-bg-1..n /* slop */\n/* minimal */ /* fix */"],
+["ui","No alias tokens","Add alias tier.","/* none */ /* slop */\n/* alias tier */ /* fix */"],
+["ui","No dark mode plan","Plan theming.","/* light only */ /* slop */\n/* theme tokens */ /* fix */"],
+["ui","No theming","Add theming system.","/* none */ /* slop */\n/* theming */ /* fix */"],
+["ui","No RTL consideration","Design for RTL.","/* ltr only */ /* slop */\n/* rtl support */ /* fix */"],
+["ui","No i18n","Plan localization.","/* en only */ /* slop */\n/* i18n */ /* fix */"],
+["ui","Text truncation issues","Handle overflow gracefully.","text-overflow:clip /* slop */\ntext-overflow:ellipsis /* fix */"],
+["ui","Overflow not handled","Define overflow behavior.","overflow:visible /* slop */\noverflow:auto /* fix */"],
+["ui","No reduced-motion support","Respect prefers-reduced-motion.","animation:spin 1s infinite /* slop */\n@media (prefers-reduced-motion:reduce){*{animation:none}} /* fix */"],
+["ui","No prefers-color-scheme","Support system theme.","/* none */ /* slop */\n@media (prefers-color-scheme:dark){...} /* fix */"],
+["ui","No print styles","Add print CSS if needed.","/* none */ /* slop */\n@media print{...} /* fix */"],
+["ui","No focus-visible","Visible focus states.","outline:none /* slop */\n:focus-visible{outline:2px solid} /* fix */"],
+["ui","No skip link","Add skip link.","/* none */ /* slop */\n<a href='#main' class='skip'>Skip</a> /* fix */"],
+["ui","No landmark regions","Use semantic landmarks.","<div class='header'> /* slop */\n<header> /* fix */"],
+["ui","No alt text","Alt text for images.","<img src='x.png'> /* slop */\n<img src='x.png' alt='...'> /* fix */"],
+["ui","No form labels","Label all inputs.","<input placeholder='Email'> /* slop */\n<label>Email<input></label> /* fix */"],
+["ui","No error association","Associate errors with fields.","<span class='err'>required</span> /* slop */\n<input aria-describedby='err'> /* fix */"],
+["ui","No live regions","Use aria-live for updates.","/* silent */ /* slop */\n<div aria-live='polite'> /* fix */"],
 // Code
-["code","Hallucinated APIs","Verify against installed versions; remove feature if absent."],
-["code","Invented config flags","Remove unused flags/env vars."],
-["code","Placeholder bodies shipped","Implement or remove."],
-["code","Fake green tests","Real tests or delete; never weaken."],
-["code","Over-abstraction","Collapse to concrete implementation."],
-["code","Copy-paste duplication","Extract after 3rd use."],
-["code","Dead code","Delete completely."],
-["code","Swallowed errors","Handle or rethrow with context."],
-["code","Magic numbers","Named constants."],
-["code","Wrong variable in copy-paste","Review diffs carefully."],
+["code","Hallucinated APIs","Verify against installed versions; remove feature if absent.","import { foo } from 'lib' // verify /* fix */"],
+["code","Invented config flags","Remove unused flags/env vars.","process.env.FEATURE_X // unused /* slop */\n/* remove */ /* fix */"],
+["code","Placeholder bodies shipped","Implement or remove.","function f(){ throw 'not impl' } /* slop */\n/* implement */ /* fix */"],
+["code","Fake green tests","Real tests or delete; never weaken.","expect(true).toBe(true) /* slop */\n/* real assertion */ /* fix */"],
+["code","Over-abstraction","Collapse to concrete implementation.","interface I + Factory + Impl /* slop */\nfunction doIt() /* fix */"],
+["code","Copy-paste duplication","Extract after 3rd use.","/* duplicated block */ /* slop */\n/* extract */ /* fix */"],
+["code","Dead code","Delete completely.","// unused function /* slop */\n/* delete */ /* fix */"],
+["code","Swallowed errors","Handle or rethrow with context.","catch(e){} /* slop */\ncatch(e){ throw new Error('ctx', {cause:e}) } /* fix */"],
+["code","Magic numbers","Named constants.","if (x > 42) /* slop */\nconst MAX = 42; if (x > MAX) /* fix */"],
+["code","Wrong variable in copy-paste","Review diffs carefully.","return a + b; // should be a + c /* slop */\n/* review */ /* fix */"],
 // Copy
-["copy","Buzzword salad copy","Specific, user-centered words."],
-["copy","Vague button labels","Context-specific labels."],
-["copy","Generic error messages","Actionable errors with recovery."],
-["copy","Empty states with no action","Add next action."],
-["copy","Over-long microcopy","Cut to essentials."],
-["copy","Lorem ipsum left in","Real content."],
-["copy","Fake avatars/logos","Real assets."],
+["copy","Buzzword salad copy","Specific, user-centered words.","'Seamless synergy platform' /* slop */\n'Close books in 2 days' /* fix */"],
+["copy","Vague button labels","Context-specific labels.","'Submit' /* slop */\n'Start free trial' /* fix */"],
+["copy","Generic error messages","Actionable errors with recovery.","'Something went wrong' /* slop */\n'Email required. Add one to continue.' /* fix */"],
+["copy","Empty states with no action","Add next action.","'No data' /* slop */\n'No projects yet. Create one.' /* fix */"],
+["copy","Over-long microcopy","Cut to essentials.","'Please note that...' /* slop */\n/* cut */ /* fix */"],
+["copy","Lorem ipsum left in","Real content.","'Lorem ipsum dolor...' /* slop */\n/* real copy */ /* fix */"],
+["copy","Fake avatars/logos","Real assets.","<img src='avatar.png'> /* slop */\n/* real asset */ /* fix */"],
 // Arch
-["arch","Overstuffed dashboards","Answer 1-2 questions per dashboard."],
-["arch","AI insight banners","Remove unless actionable."],
-["arch","Tip of the day boxes","Remove."],
-["arch","Getting-started checklists","Only if first-run needed."],
-["arch","Quick action clutter","Remove low-value actions."],
-["arch","Floating stats","Remove decorative stats."],
-["arch","Missing loading state","Add skeleton/spinner."],
-["arch","Missing empty state","Add empty state with action."],
-["arch","Missing error state","Add error + recovery."],
-["arch","Missing partial-data state","Handle partial."],
-["arch","No focus states","Add focus."],
-["arch","Contrast below 4.5:1","Fix contrast."],
-["arch","Div-as-button","Use button element."],
-["arch","No responsive breakpoints","Add breakpoints."],
-["arch","Horizontal scroll on mobile","Fix layout."],
-["arch","Animation over 300ms","Reduce duration."],
-["arch","Motion without purpose","Remove decorative motion."],
-["arch","Overstuffed screens","Remove low-value elements."],
-// Perf/3D
-["perf","No reduced-motion support","Respect prefers-reduced-motion."],
-["perf","Heavy appear animations","Show content immediately."],
-["perf","Decorative motion","Animate only changes."],
+["arch","Overstuffed dashboards","Answer 1-2 questions per dashboard.","/* 12 cards + banners */ /* slop */\n/* 2 metrics */ /* fix */"],
+["arch","AI insight banners","Remove unless actionable.","<div class='ai-insight'>...</div> /* slop */\n/* remove */ /* fix */"],
+["arch","Tip of the day boxes","Remove.","<div class='tip'>...</div> /* slop */\n/* remove */ /* fix */"],
+["arch","Getting-started checklists","Only if first-run needed.","<div class='checklist'>...</div> /* slop */\n/* remove */ /* fix */"],
+["arch","Quick action clutter","Remove low-value actions.","<button>...</button>x6 /* slop */\n/* remove */ /* fix */"],
+["arch","Floating stats","Remove decorative stats.","<div class='stat'>...</div> /* slop */\n/* remove */ /* fix */"],
+["arch","Missing loading state","Add skeleton/spinner.","/* blank */ /* slop */\n<skeleton/> /* fix */"],
+["arch","Missing empty state","Add empty state with action.","/* blank */ /* slop */\n<empty action/> /* fix */"],
+["arch","Missing error state","Add error + recovery.","/* blank */ /* slop */\n<error retry/> /* fix */"],
+["arch","Missing partial-data state","Handle partial.","/* blank */ /* slop */\n<partial/> /* fix */"],
+["arch","No focus states","Add focus.","/* none */ /* slop */\n:focus-visible{outline:2px} /* fix */"],
+["arch","Contrast below 4.5:1","Fix contrast.","color:#9ca3af /* slop */\ncolor:#444 /* fix */"],
+["arch","Div-as-button","Use button element.","<div onclick> /* slop */\n<button> /* fix */"],
+["arch","No responsive breakpoints","Add breakpoints.","/* fixed width */ /* slop */\n@media (max-width:768px){...} /* fix */"],
+["arch","Horizontal scroll on mobile","Fix layout.","overflow-x:auto /* slop */\n/* fix layout */ /* fix */"],
+["arch","Animation over 300ms","Reduce duration.","transition:all 600ms /* slop */\ntransition:all 200ms /* fix */"],
+["arch","Motion without purpose","Remove decorative motion.","animation:pulse 1.5s infinite /* slop */\n/* remove */ /* fix */"],
+["arch","Overstuffed screens","Remove low-value elements.","/* 10 sections */ /* slop */\n/* 3 sections */ /* fix */"],
+// Perf
+["perf","No reduced-motion support","Respect prefers-reduced-motion.","animation:spin 1s infinite /* slop */\n@media (prefers-reduced-motion:reduce){*{animation:none}} /* fix */"],
+["perf","Heavy appear animations","Show content immediately.","opacity:0;transform:translateY(20px) /* slop */\n/* show immediately */ /* fix */"],
+["perf","Decorative motion","Animate only changes.","animation:pulse 1.5s infinite /* slop */\n/* remove */ /* fix */"],
 // Output
-["output","Restating request","Lead with result."],
-["output","Narrating steps","No step narration."],
-["output","Hedging boilerplate","Be decisive."],
-["output","Inventing paths/APIs","Verify before claiming."],
-["output","Claiming success unverified","Run checks first."],
-["output","Over-long replies","Match reply to task size."]
+["output","Restating request","Lead with result.","'Here is what I did...' /* slop */\n/* lead with result */ /* fix */"],
+["output","Narrating steps","No step narration.","'Let me...' /* slop */\n/* remove */ /* fix */"],
+["output","Hedging boilerplate","Be decisive.","'It is worth noting...' /* slop */\n/* remove */ /* fix */"],
+["output","Inventing paths/APIs","Verify before claiming.","/* invented path */ /* slop */\n/* verify */ /* fix */"],
+["output","Claiming success unverified","Run checks first.","/* claimed done */ /* slop */\n/* run checks */ /* fix */"],
+["output","Over-long replies","Match reply to task size.","/* 500 words for typo */ /* slop */\n/* 1 line */ /* fix */"]
 ];
 
+const CATS = [
+  {id:'',label:'All'},
+  {id:'ui',label:'UI'},
+  {id:'code',label:'Code'},
+  {id:'copy',label:'Copy'},
+  {id:'arch',label:'Architecture'},
+  {id:'perf',label:'Perf/3D'},
+  {id:'output',label:'Output'}
+];
 const grid = document.getElementById('grid');
 const q = document.getElementById('q');
-const cat = document.getElementById('cat');
+const chips = document.getElementById('chips');
 const empty = document.getElementById('empty');
 const count = document.getElementById('count');
 const foot = document.getElementById('foot');
+let activeCat = '';
+
+function renderChips() {
+  chips.innerHTML = '';
+  CATS.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (c.id===activeCat?' active':'');
+    b.textContent = c.label;
+    b.addEventListener('click', ()=>{ activeCat=c.id; renderChips(); render(); });
+    chips.appendChild(b);
+  });
+}
 
 function render() {
   const term = q.value.trim().toLowerCase();
-  const c = cat.value;
-  const filtered = DATA.filter(([k,name]) => (!c || k===c) && (!term || name.toLowerCase().includes(term)));
+  const filtered = DATA.filter(([k,name]) => (!activeCat || k===activeCat) && (!term || name.toLowerCase().includes(term) || (DATA.find(d=>d[1]===name)?.[2]||'').toLowerCase().includes(term)));
   grid.innerHTML = '';
-  filtered.forEach(([k,name,fix],i) => {
+  filtered.forEach(([k,name,fix,code],i) => {
     const el = document.createElement('article');
     el.className = 'card';
-    el.innerHTML = `<div class="head"><span class="num">${i+1}</span><h3>${name}</h3></div><div class="cat">${k}</div><div class="fix">${fix}</div>`;
+    const codeHtml = code ? `<div class="toggle" data-i="${i}">show example</div><pre class="demo" id="d${i}">${code.replace(/</g,'&lt;')}</pre>` : '';
+    el.innerHTML = `<div class="head"><span class="num">${i+1}</span><h3>${name}</h3></div><div class="cat">${k}</div><div class="fix">${fix}</div>${codeHtml}`;
     grid.appendChild(el);
+  });
+  // wire toggles
+  grid.querySelectorAll('.toggle').forEach(t => {
+    t.addEventListener('click', () => {
+      const d = document.getElementById('d'+t.dataset.i);
+      if (d) { d.classList.toggle('show'); t.textContent = d.classList.contains('show') ? 'hide example' : 'show example'; }
+    });
   });
   count.textContent = filtered.length;
   empty.hidden = filtered.length !== 0;
   foot.textContent = `${DATA.length} patterns total · Hyper · MIT`;
 }
 q.addEventListener('input', render);
-cat.addEventListener('change', render);
+renderChips();
 render();
 </script>
 </body>
