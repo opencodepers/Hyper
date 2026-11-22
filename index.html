@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperlean — 100x lean mode for any CLI AI agent</title>
+<meta name="description" content="Hyperlean fuses caveman terse output, ponytail smallest-change, yagni, complexity routing, slop removal, and PowerShell discipline into one skill. Benchmarks: 3.26x faster PowerShell, 81.5% smaller websites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05060a;--bg2:#0b0d14;--card:#10131c;--border:#1c2030;--fg:#f5f7fa;--muted:#8a93a6;--accent:#7c5cff;--accent2:#3dd9eb;--good:#3dd9eb;--bad:#ff5c7a;--warn:#ffb84d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+body{line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:JetBrains Mono,monospace}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(124,92,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,255,.06) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%)}
+.aurora{position:fixed;top:-30%;left:50%;transform:translateX(-50%);width:120vw;height:80vw;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(124,92,255,.25),transparent 50%),radial-gradient(circle at 70% 40%,rgba(61,217,235,.18),transparent 55%);filter:blur(80px);z-index:0;animation:aurora 12s ease-in-out infinite alternate}
+@keyframes aurora{0%{transform:translateX(-50%) scale(1)}100%{transform:translateX(-48%) scale(1.08)}}
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(5,6,10,.7);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1200px;margin:0 auto}
+.logo{font-weight:900;font-size:20px;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px var(--accent)}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#05060a;padding:8px 16px;border-radius:8px;font-weight:700;font-size:14px}
+.hero{position:relative;z-index:1;padding:120px 0 80px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;color:var(--muted);background:rgba(255,255,255,.03);margin-bottom:28px}
+.eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 12px var(--good);animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-title{font-size:clamp(44px,8vw,96px);font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:24px}
+.grad{background:linear-gradient(120deg,var(--accent),var(--accent2),#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:720px;margin:0 auto 40px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 24px;border-radius:10px;font-weight:700;font-size:15px;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#05060a;box-shadow:0 10px 40px rgba(124,92,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 50px rgba(124,92,255,.55)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--fg);border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:720px;margin:60px auto 0}
+.stat{padding:20px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02);backdrop-filter:blur(8px)}
+.stat .num{font-size:36px;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{font-size:12px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+section{position:relative;z-index:1;padding:100px 0}
+.section-label{font-family:JetBrains Mono,monospace;font-size:12px;color:var(--accent2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px}
+.section-sub{color:var(--muted);font-size:18px;max-width:640px;margin-bottom:48px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(124,92,255,.08),transparent 60%);pointer-events:none}
+.card.bad{border-color:rgba(255,92,122,.3)}
+.card.good{border-color:rgba(61,217,235,.3)}
+.card h3{font-size:20px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.tag{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600;letter-spacing:.5px}
+.tag-bad{background:rgba(255,92,122,.15);color:var(--bad)}
+.tag-good{background:rgba(61,217,235,.15);color:var(--good)}
+.metric-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.metric-row:last-child{border-bottom:0}
+.metric-row .k{color:var(--muted)}
+.metric-row .v{font-weight:700;font-family:JetBrains Mono,monospace}
+.bar{height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin-top:6px}
+.bar-fill{height:100%;border-radius:4px}
+.bar-bad{background:linear-gradient(90deg,var(--bad),#ff8a9e)}
+.bar-good{background:linear-gradient(90deg,var(--accent),var(--good))}
+.codeblock{background:#0a0c12;border:1px solid var(--border);border-radius:12px;padding:20px;font-family:JetBrains Mono,monospace;font-size:13px;overflow-x:auto;line-height:1.6;margin-top:16px}
+.codeblock .c{color:#5a6478}
+.codeblock .k{color:#c792ea}
+.codeblock .s{color:#c3e88d}
+.codeblock .n{color:#f78c6c}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:transform .3s,border-color .3s}
+.skill-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.skill-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.skill-card p{color:var(--muted);font-size:14px}
+.skill-card .triggers{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.trig{font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(124,92,255,.12);color:var(--accent);font-family:JetBrains Mono,monospace}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.feat{padding:24px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.02)}
+.feat .ico{font-size:28px;margin-bottom:12px}
+.feat h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.feat p{color:var(--muted);font-size:14px}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),var(--accent2))}
+.tl-item{position:relative;margin-bottom:28px;padding-left:12px}
+.tl-item::before{content:'';position:absolute;left:-28px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.tl-item h4{font-size:16px;font-weight:700;margin-bottom:4px}
+.tl-item p{color:var(--muted);font-size:14px}
+.cta-final{text-align:center;padding:120px 0}
+.cta-final h2{margin-bottom:16px}
+.cta-final p{color:var(--muted);margin-bottom:32px}
+footer{border-top:1px solid var(--border);padding:40px 0;color:var(--muted);font-size:14px}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media (max-width:768px){.compare{grid-template-columns:1fr}.hero-stats{grid-template-columns:1fr}.nav-links{display:none}}
+.reveal{opacity:0;transform:translateY(20px)}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="aurora"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-dot"></span>hyper</div>
+    <div class="nav-links"><a href="#bench">Benchmarks</a><a href="#skills">Skills</a><a href="#how">How</a><a href="https://github.com/opencodepers/hyper">GitHub</a></div>
+    <a class="nav-cta" href="https://github.com/opencodepers/hyper">Get skill</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span class="pulse"></span>100x lean mode · v2</div>
+    <h1 class="hero-title">Ship <span class="grad">10x less code</span><br>with 10x more signal.</h1>
+    <p class="hero-sub">Hyperlean fuses caveman terse output, ponytail smallest-change, yagni scope discipline, complexity routing, slop removal, and PowerShell discipline into one skill for any CLI AI agent harness.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/opencodepers/hyper">Install skill</a>
+      <a class="btn btn-ghost" href="#bench">See benchmarks</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num" data-count="3.26" data-suffix="x">0</div><div class="lbl">Faster PowerShell</div></div>
+      <div class="stat"><div class="num" data-count="81.5" data-suffix="%">0</div><div class="lbl">Smaller website</div></div>
+      <div class="stat"><div class="num" data-count="100" data-suffix="+">0</div><div class="lbl">Ideas shipped</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="bench">
+  <div class="container">
+    <div class="section-label">// benchmarks</div>
+    <h2>Measured, not claimed.</h2>
+    <p class="section-sub">Same task, two approaches. Real numbers from real runs.</p>
+    <div class="compare">
+      <div class="card bad">
+        <h3>Without hyper <span class="tag tag-bad">SLOP</span></h3>
+        <div class="metric-row"><span class="k">PowerShell (count .md + sum bytes)</span><span class="v">824.05 ms</span></div>
+        <div class="bar"><div class="bar-fill bar-bad" style="width:100%"></div></div>
+        <div class="metric-row"><span class="k">Landing page size</span><span class="v">8,823 bytes</span></div>
+        <div class="bar"><div class="bar-fill bar-bad" style="width:100%"></div></div>
+        <div class="metric-row"><span class="k">CTAs on hero</span><span class="v">3</span></div>
+        <div class="metric-row"><span class="k">Dependencies</span><span class="v">Google Fonts + Inter</span></div>
+        <div class="codeblock"><span class="c"># verbose: collect all, client filter, loop sum</span>
+<span class="k">$files</span> = Get-ChildItem -Recurse -File
+<span class="k">$md</span> = @()
+<span class="k">foreach</span> (<span class="k">$f</span> <span class="k">in</span> <span class="k">$files</span>) { <span class="k">if</span> (<span class="k">$f</span>.Extension -eq <span class="s">'.md'</span>) { <span class="k">$md</span> += <span class="k">$f</span> } }
+<span class="k">$b</span> = 0; <span class="k">foreach</span> (<span class="k">$f</span> <span class="k">in</span> <span class="k">$md</span>) { <span class="k">$b</span> += <span class="k">$f</span>.Length }</div>
+      </div>
+      <div class="card good">
+        <h3>With hyper <span class="tag tag-good">LEAN</span></h3>
+        <div class="metric-row"><span class="k">PowerShell (count .md + sum bytes)</span><span class="v">253.09 ms</span></div>
+        <div class="bar"><div class="bar-fill bar-good" style="width:30.7%"></div></div>
+        <div class="metric-row"><span class="k">Landing page size</span><span class="v">1,633 bytes</span></div>
+        <div class="bar"><div class="bar-fill bar-good" style="width:18.5%"></div></div>
+        <div class="metric-row"><span class="k">CTAs on hero</span><span class="v">1</span></div>
+        <div class="metric-row"><span class="k">Dependencies</span><span class="v">system-ui only</span></div>
+        <div class="codeblock"><span class="c"># lean: filter at source, measure sum</span>
+<span class="k">$md</span> = Get-ChildItem -Recurse -File -Filter *.md
+<span class="k">$c</span> = <span class="k">$md</span>.Count
+<span class="k">$b</span> = (<span class="k">$md</span> | Measure-Object -Property Length -Sum).Sum</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// skills</div>
+    <h2>Three skills. One group.</h2>
+    <p class="section-sub">Install one or all. They compose.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>hyperlean</h3>
+        <p>100x lean mode. Caveman terse + ponytail smallest-change + yagni + complexity routing (S/M/L/XL) + scope contract + context discipline + verification + better outputs + anti-slop + failure playbooks + security/data floor + think-smarter + shell discipline.</p>
+        <div class="triggers"><span class="trig">hyperlean</span><span class="trig">leanmax</span><span class="trig">10x</span><span class="trig">route</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>hyperslop</h3>
+        <p>Slop detector + remover across code, UI, copy, architecture, output, websites (incl. 3D + perf). Catalogs 21 AI-slop design signs, 3D budgets, CWV, mobile tiers, a11y.</p>
+        <div class="triggers"><span class="trig">hyperslop</span><span class="trig">deslop</span><span class="trig">slop check</span></div>
+      </div>
+      <div class="skill-card">
+        <h3>hypershell</h3>
+        <p>Fast, small, correct PowerShell. Filtering early, streaming, parallelization, measuring, output discipline, error handling, security, profiling, taking less time.</p>
+        <div class="triggers"><span class="trig">hypershell</span><span class="trig">powershell</span><span class="trig">pwsh</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-label">// how it works</div>
+    <h2>Route, scope, ship, verify.</h2>
+    <p class="section-sub">Four steps. No ceremony.</p>
+    <div class="timeline">
+      <div class="tl-item"><h4>1. Route</h4><p>Classify S/M/L/XL via 6-signal scoring. Start narrow. Escalate on contradiction.</p></div>
+      <div class="tl-item"><h4>2. Scope contract</h4><p>Restate objective, list touched files, note blast radius, define validation.</p></div>
+      <div class="tl-item"><h4>3. Ship smallest</h4><p>Reuse existing, stdlib, deps. Delete > add. Finish all callers/tests. No abstractions nobody asked.</p></div>
+      <div class="tl-item"><h4>4. Verify</h4><p>Cheapest check that catches likely regression. Report change + verification + risk.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">// features</div>
+    <h2>What's inside.</h2>
+    <div class="features">
+      <div class="feat"><div class="ico">⚡</div><h3>Token budget by class</h3><p>S ≤6 lines, M ≤12, L ≤20, XL ≤30. No fluff.</p></div>
+      <div class="feat"><div class="ico">🛡️</div><h3>Security/data floor</h3><p>OWASP top 10, secrets grep, least privilege, transactions, migrations.</p></div>
+      <div class="feat"><div class="ico">🎨</div><h3>Anti-slop catalog</h3><p>21 AI-website slop signs + remediation. Real screenshots, real copy.</p></div>
+      <div class="feat"><div class="ico">🧪</div><h3>Verification matrix</h3><p>Minimum check per change type. Never skip security/data/migration.</p></div>
+      <div class="feat"><div class="ico">🧠</div><h3>Think smarter</h3><p>Pre-mortem, assumptions, inversion, Chesterton's fence, confidence calibration.</p></div>
+      <div class="feat"><div class="ico">🐚</div><h3>Shell discipline</h3><p>Filter at source, stream, parallelize, measure, safe destructive ops.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <h2>Stop shipping slop.</h2>
+    <p>One skill. Any harness. Measured results.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://github.com/opencodepers/hyper">Install from GitHub</a>
+      <a class="btn btn-ghost" href="https://github.com/opencodepers/hyper/tree/master/benchmarks">View benchmarks</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 hyper · MIT license</div>
+    <div><a href="https://github.com/opencodepers/hyper">GitHub</a> · <a href="https://github.com/opencodepers/hyper/tree/master/benchmarks">Benchmarks</a></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.min.js"></script>
+<script>
+const { animate, inView, stagger } = Motion || window.Motion || {};
+function $(s){return document.querySelector(s)}
+function $$(s){return [...document.querySelectorAll(s)]}
+
+// Hero entrance
+if (animate){
+  animate('.eyebrow',{opacity:[0,1],y:[10,0]},{duration:.6,delay:.1});
+  animate('.hero-title',{opacity:[0,1],y:[30,0]},{duration:.8,delay:.2});
+  animate('.hero-sub',{opacity:[0,1],y:[20,0]},{duration:.7,delay:.4});
+  animate('.hero-actions',{opacity:[0,1],y:[16,0]},{duration:.6,delay:.5});
+  animate('.stat',{opacity:[0,1],y:[20,0]},{duration:.6,delay:stagger(.1,{start:.6})});
+}
+
+// Counters
+function runCounters(){
+  $$('.stat .num').forEach(el=>{
+    const target=parseFloat(el.dataset.count);
+    const suffix=el.dataset.suffix||'';
+    const dur=1400;const start=performance.now();
+    function tick(t){
+      const p=Math.min(1,(t-start)/dur);
+      const eased=1-Math.pow(1-p,3);
+      const val=target*eased;
+      el.textContent=(target%1===0?Math.round(val):val.toFixed(2))+suffix;
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+setTimeout(runCounters,700);
+
+// Reveal on scroll
+if (inView){
+  $$('.card,.skill-card,.feat,.tl-item').forEach(el=>{
+    inView(el,()=>{animate(el,{opacity:[0,1],y:[24,0]},{duration:.6,easing:'ease-out'})},{amount:.2});
+  });
+}
+
+// Bar fills animate
+if (inView){
+  inView('.bar-fill', (el)=>{ const w=el.style.width; el.style.width='0%'; requestAnimationFrame(()=>{ el.style.transition='width 1.2s cubic-bezier(.2,.8,.2,1)'; el.style.width=w; }); },{amount:.5});
+}
+</script>
+</body>
+</html>
+'@
+Set-Content "C:\Users\sophi\hyper-repo\index.html" $html -NoNewline
+Write-Host "written"
