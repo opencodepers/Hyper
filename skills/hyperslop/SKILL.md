@@ -276,6 +276,7 @@ Remaining risk: <what>
 ## 12. UI styles catalog (91)
 
 Reference: https://github.com/jacoblbagent/ui-design-styles (live: https://jacoblbagent.github.io/ui-design-styles/)
+Detailed traits: https://github.com/opencodepers/hyper/blob/master/references/ui-styles.md
 
 When building UI, pick ONE style deliberately and commit. Mixing styles without intent = slop. Use Lucide icons (not glyphs) and purposeful motion (loading/state/entrance/feedback; respect reduced-motion).
 
