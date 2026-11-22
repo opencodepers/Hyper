@@ -72,7 +72,7 @@ h2{font-family:Fraunces,serif;font-size:clamp(32px,5vw,48px);font-weight:800;let
 .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .feat{padding:20px;border:1px solid var(--border);border-radius:8px;transition:transform .25s}
 .feat:hover{transform:translateY(-3px)}
-.feat .ico{font-size:22px;margin-bottom:8px}
+.feat .ico{margin-bottom:8px;color:var(--accent)}.feat .ico svg{width:22px;height:22px}
 .feat h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .feat p{color:var(--muted);font-size:13px}
 .cta{text-align:center;padding:64px 0}
@@ -193,12 +193,12 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
     <div class="section-label reveal">Inside</div>
     <h2 class="reveal">What's in the skill.</h2>
     <div class="features">
-      <div class="feat reveal"><div class="ico">⚡</div><h3>Token budget by class</h3><p>S ≤6 lines, M ≤12, L ≤20, XL ≤30.</p></div>
-      <div class="feat reveal"><div class="ico">🛡️</div><h3>Security floor</h3><p>OWASP top 10, secrets grep, least privilege.</p></div>
-      <div class="feat reveal"><div class="ico">🎨</div><h3>Anti-slop</h3><p>21 slop signs + remediation. Real content only.</p></div>
-      <div class="feat reveal"><div class="ico">🧪</div><h3>Verification matrix</h3><p>Minimum check per change type.</p></div>
-      <div class="feat reveal"><div class="ico">🧠</div><h3>Think smarter</h3><p>Pre-mortem, inversion, confidence calibration.</p></div>
-      <div class="feat reveal"><div class="ico">🐚</div><h3>Shell discipline</h3><p>Filter at source, stream, measure.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="zap"></i></div><h3>Token budget by class</h3><p>S ≤6 lines, M ≤12, L ≤20, XL ≤30.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="shield"></i></div><h3>Security floor</h3><p>OWASP top 10, secrets grep, least privilege.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="sparkles"></i></div><h3>Anti-slop</h3><p>100+ slop signs + remediation. Real content only.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="flask-conical"></i></div><h3>Verification matrix</h3><p>Minimum check per change type.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="brain"></i></div><h3>Think smarter</h3><p>Pre-mortem, inversion, confidence calibration.</p></div>
+      <div class="feat reveal"><div class="ico"><i data-lucide="terminal"></i></div><h3>Shell discipline</h3><p>Filter at source, stream, measure.</p></div>
     </div>
   </div>
 </section>
@@ -221,9 +221,16 @@ footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font
   </div>
 </footer>
 
+<div id="loader" style="position:fixed;inset:0;background:#fafaf7;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s">
+  <div style="font-family:Fraunces,serif;font-size:28px;font-weight:800;letter-spacing:-1px">Hyper<span style="color:#d6336c">.</span></div>
+</div>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.min.js"></script>
 <script>
 const $$ = s => [...document.querySelectorAll(s)];
+if (window.lucide) lucide.createIcons();
+const loader = document.getElementById('loader');
+if (loader){ setTimeout(()=>{ loader.style.opacity='0'; setTimeout(()=>loader.remove(),400); }, 350); }
 const { animate, inView, stagger } = (window.Motion || {});
 function countUp(el){
   const target = parseFloat(el.dataset.count);
