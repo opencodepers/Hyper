@@ -24,6 +24,37 @@ Active for whole session until "stop hyperslop" or "normal mode". Switch: `/hype
 - Never introduce new slop while fixing.
 - Keep working code working: run tests/checks after removal.
 
+## 0b. Color, contrast & brand identity
+
+- Contrast: body text >=4.5:1, large text/icons >=3:1 against background. Check with a contrast tool.
+- Palette: build tonal scales (50-950) + semantic roles (surface, text, border, accent, danger, success). Never raw hex in components.
+- Brand identity: define mood, voice, color, type, motion in a brief before UI. Consistent across surfaces.
+- Avoid low-contrast gray-on-white and gray-on-gray.
+- Dark mode: rebalance surfaces (elevation via lightness), desaturate accents, keep contrast.
+- One accent color; neutrals do the work.
+
+## 0c. Icons with hover text (cleaner UI)
+
+- Prefer icon-only controls with a text label revealed on hover/focus (tooltip). Reduces clutter, modern look.
+- Always provide accessible name (aria-label) even when text is hover-only.
+- Keep tooltips short; delay ~300ms; respect reduced-motion.
+- Use Lucide icons; consistent size (16/20/24px) and stroke.
+
+## 0a. Logo & icon design guidance (prevent slop)
+
+- One icon set across the whole product (Lucide recommended). Never mix sets.
+- Never use emoji/glyphs as icons or logos.
+- Logo: simple, scalable, works in 1 color, readable at 16px. Avoid gradients/glow/neon.
+- Icon sizes: use a fixed scale (16/20/24px). Consistent stroke width.
+- Don't generate logos with AI defaults (purple gradients, glow, abstract blobs). Design with intent.
+- Provide SVG + favicon + app icon variants. Test on light/dark backgrounds.
+- Avoid over-detailed icons; simplify to essentials.
+
+## 0. Icon & motion guidance (always)
+
+- Icons: never use emoji/glyphs as icons. Use Lucide (or one consistent icon set) for best results. One set across the whole product.
+- Motion: add purposeful animation to loading screens, state transitions, entrances, and feedback. Motion should clarify state, not decorate. Always respect `prefers-reduced-motion`. Keep durations ≤300ms for feedback. No decorative-only motion (pulsing dots, blinking cursors, bouncing buttons) unless it signals real state.
+
 ## 1. Slop taxonomy
 
 ### Code slop
@@ -233,6 +264,27 @@ Remaining risk: <what>
 - Run hyperslop after any hyperlean change as final gate.
 - Hyperlean anti-slop is prevention; hyperslop is cure.
 - Share scope contract and verification.
+
+## 12. UI styles catalog (91)
+
+Reference: https://github.com/jacoblbagent/ui-design-styles (live: https://jacoblbagent.github.io/ui-design-styles/)
+
+When building UI, pick ONE style deliberately and commit. Mixing styles without intent = slop. Use Lucide icons (not glyphs) and purposeful motion (loading/state/entrance/feedback; respect reduced-motion).
+
+Styles (41 looks): Skeuomorphism, Flat design, Material Design, Material 3, Swiss, Minimalism, Editorial, Brutalist web, Fluent Design, Neumorphism, Claymorphism, Glassmorphism, Liquid glass, Aurora/mesh, Neo-brutalism, 3D render illustration, Holographic/iridescent, Maximalism, Memphis, Vaporwave, Cyberpunk HUD, Y2K/Frutiger Aero, Retro-futurism, Comic/pop art, Organic/hand-drawn, Kinetic typography, Luxury/premium, Playful chunky, Nordic, Isometric/axonometric, Terminal/CLI, Spatial/depth, Dark-first/OLED, Enterprise/B2B, iOS HIG, Art Deco, Grunge/distressed, Corporate Memphis, Pixel art/8-bit, Japanese web density, Anti-design/webcore.
+
+Patterns (26 shapes): Bento grid, Card-based UI, Data dashboard, Conversational UI, Gamified UI, Skeleton loading, Empty state, Marketing/hero landing, Onboarding/wizard, Feed/infinite scroll, Command palette, App navigation shell, Overlay layer, Form and validation, Data table/grid, Master-detail split, Search/faceted results, Board/kanban, Pricing/plan comparison, Settings/preferences, Activity timeline, Gallery/lightbox, Checkout/cart funnel, Map explorer, Inbox/triage list, Threaded discussion.
+
+Practices (24 disciplines): Accessibility-first, Token-driven system UI, Progressive disclosure, Motion-led micro-interaction, Zero-UI/ambient, Agentic/adaptive UI, Responsive/mobile-first, Content design/UX writing, Research-driven design, Design system/atomic composition, Dark patterns (avoid), Localization/RTL, Performance-first, Error resilience/recovery, Elevation as hierarchy, Sound/haptic feedback, Spatial interaction, Cinematic/media-first, Scroll-driven narrative, Immersive/3D-first, Brand-expression-first, Conversion-optimised, Attention-first, Joy-first.
+
+Rule: a style is a look, a pattern is a screen shape, a practice is a discipline. Mix one style + one pattern + one practice deliberately (see Combos in the catalog). Never apply a style's signature (e.g. glass blur, neo-brutal shadow) to a different style's surface.
+
+## 11. Slop showcase index (100+)
+
+Full interactive catalog: https://opencodepers.github.io/hyper/showcases.html
+
+When scanning, check against these (non-exhaustive):
+Colored stripe on cards; borders around every block; colored italic accent; all-caps eyebrow; meaningless badges/dots; monospace labels; numbers as words; noun-heavy titles; emoji icons; placeholders; overstuffed screens; labeled metaphors; text demos; glass cards; same radius/shadow; low contrast; decorative motion; heavy appear animations; unverifiable proof; purple gradients; glow/neon/grid; hallucinated APIs; invented flags; placeholder bodies; fake tests; over-abstraction; copy-paste dup; dead code; swallowed errors; magic numbers; wrong variable; buzzword copy; vague labels; generic errors; empty states no action; over-long microcopy; lorem left in; fake avatars; mixed icons; inconsistent radius; missing loading/empty/error/partial states; no focus; contrast <4.5:1; div-as-button; no responsive breakpoints; horizontal scroll; animation >300ms; motion without purpose; hero with 3 CTAs; gradient text; default Inter+blue; glassmorphism; neon; grid bg; labeled metaphors; text demos; fake testimonials; round-number proof; initials as avatars; grey logo boxes; empty frames; overstuffed dashboards; AI insight banners; tip-of-day; checklists; quick-action clutter; floating stats; chips/extra buttons; banners on banners; noun-heavy headings; feature-list titles; numbers as words in CTAs; monospace everywhere; all-caps labels; eyebrows everywhere; badges everywhere; dots before labels; status colors reused; borders inside borders; boxes inside boxes; off-grid spacing; no spacing/type scale; ad-hoc sizes; hardcoded colors/spacing; missing semantic tokens; primitive-only tokens; token bloat; no alias tokens; no dark mode; no theming; no RTL; no i18n; truncation; overflow; no reduced-motion; no color-scheme; no print styles; no focus-visible; no skip link; no landmarks; no alt text; no form labels; no error assoc; no live regions.
 
 ## Footer (every reply)
 

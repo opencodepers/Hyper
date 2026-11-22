@@ -109,6 +109,9 @@ Preference order:
 
 ## 4. Anti-slop (never do)
 
+Full catalog of 100+ slop patterns: https://opencodepers.github.io/hyper/showcases.html (and hyperslop skill).
+UI styles catalog (91): https://github.com/jacoblbagent/ui-design-styles — pick one style deliberately; use Lucide icons; purposeful motion.
+
 - No new abstraction for one use. No wrapper/proxy without all methods forwarded.
 - No "for later" config/flags/options. No backwards-compat shims for unused code.
 - No half-finished implementations. No TODO without owner+date.
@@ -205,6 +208,10 @@ Classify findings: CONFIRMED / PLAUSIBLE / REFUTED.
 - CSS: contrast ≥4.5:1, focus states, responsive breakpoints.
 - a11y: semantic HTML, ARIA only when needed, keyboard nav, screen reader.
 - Perf: lazy load, image optimization, bundle size.
+- Icons: use Lucide (or one consistent set). Never emoji/glyphs. Prefer icon-only + hover text (tooltip) for cleaner UI; always aria-label.
+- Logo: simple, scalable, 1-color, readable at 16px; no gradients/glow/neon; provide SVG+favicon+app icon.
+- Color/contrast: body >=4.5:1, large >=3:1. Tonal scales + semantic roles. Brand identity defined before UI.
+- Motion: purposeful animation on loading/screens/state transitions/feedback; respect reduced-motion; ≤300ms feedback.
 - Test golden path + empty/error/partial states.
 
 ## 14. Backend floor
